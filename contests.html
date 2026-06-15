@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第一模块：历年 XCPC 比赛池</title>
+    <title>比赛汇总</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f4f7f6; color: #333; scroll-behavior: smooth; }
         
-        /* 顶部导航与快捷跳转 */
+        /* 顶部导航 */
         .header { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto 20px auto; }
         h1 { color: #2c3e50; margin: 0; }
-        .nav-links { display: flex; gap: 15px; }
         .btn { text-decoration: none; background-color: #34495e; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: background 0.2s; }
         .btn:hover { background-color: #2c3e50; }
-        .btn-jump { background-color: #3498db; }
-        .btn-jump:hover { background-color: #2980b9; }
+        
+        /* 🌟 新增：右下角悬浮导航菜单 */
+        .floating-nav {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column; /* 让两个按钮上下排列 */
+            gap: 15px;
+            z-index: 1000; /* 确保悬浮在最上层，不被表格遮挡 */
+        }
+        
+        .btn-jump { 
+            background-color: #3498db; 
+            color: white; 
+            text-decoration: none; 
+            padding: 15px 25px; 
+            border-radius: 50px; /* 变成好看的胶囊形状 */
+            font-weight: bold; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* 添加一点高级的阴影 */
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .btn-jump:hover { background-color: #2980b9; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
         
         .container { max-width: 1000px; margin: 0 auto; padding-bottom: 100px; }
         
@@ -37,16 +58,17 @@
 </head>
 <body>
     <div class="header">
-        <h1>📚 近年比赛汇总</h1>
-        <div class="nav-links">
-            <a href="index.html" class="btn">⬅ 返回主页</a>
-            <a href="#todo-section" class="btn btn-jump">📌 未做 (<span id="todo-count">0</span>)</a>
-            <a href="#done-section" class="btn btn-jump">✅ 已做 (<span id="done-count">0</span>)</a>
-        </div>
+        <h1>📚 近年真题</h1>
+        <a href="index.html" class="btn">⬅ 返回主页</a>
+    </div>
+
+    <div class="floating-nav">
+        <a href="#todo-section" class="btn-jump">📌 未做 (<span id="todo-count">0</span>)</a>
+        <a href="#done-section" class="btn-jump">✅ 已做 (<span id="done-count">0</span>)</a>
     </div>
 
     <div class="container">
-        <h2 id="todo-section" class="section-title">📌 未做比赛靶场</h2>
+        <h2 id="todo-section" class="section-title">📌 未做比赛</h2>
         <hr class="section-divider">
         <table>
             <thead>
@@ -61,7 +83,7 @@
                 </tbody>
         </table>
 
-        <h2 id="done-section" class="section-title">✅ 已完成归档</h2>
+        <h2 id="done-section" class="section-title">✅ 已做归档</h2>
         <hr class="section-divider">
         <table id="done-table">
             <thead>
@@ -83,35 +105,30 @@
         function renderTables() {
             const doneMap = JSON.parse(localStorage.getItem('xcpc_done_records')) || {};
             
-            // 获取两个 tbody 容器
             const todoBody = document.getElementById('todo-list');
             const doneBody = document.getElementById('done-list');
             
-            // 清空旧数据
             todoBody.innerHTML = '';
             doneBody.innerHTML = '';
 
             let todoCount = 0;
             let doneCount = 0;
 
-            // 统一按 ID 从新到旧排序
             let sortedData = [...globalData].sort((a, b) => b.id - a.id);
 
             sortedData.forEach(contest => {
                 const isDone = doneMap[contest.id] || false;
                 const tr = document.createElement('tr');
                 
-                // 注意这里的 toggleDone 传入了当前的 isDone 状态
                 tr.innerHTML = `
                     <td>
                         <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleDone(${contest.id}, ${isDone})">
                     </td>
                     <td>${contest.id}</td>
                     <td>${contest.name}</td>
-                    <td><a href="${contest.url}" target="_blank">跳转</a></td>
+                    <td><a href="${contest.url}" target="_blank">跳转链接 🚀</a></td>
                 `;
 
-                // 根据状态分发到不同的表格
                 if (isDone) {
                     doneBody.appendChild(tr);
                     doneCount++;
@@ -121,31 +138,24 @@
                 }
             });
 
-            // 更新顶部的数据统计面板
             document.getElementById('todo-count').innerText = todoCount;
             document.getElementById('done-count').innerText = doneCount;
         }
 
-        // 处理点击事件（增加二级确认）
         function toggleDone(contestId, currentState) {
-            // currentState 表示点击前是“已做”还是“未做”
             let message = currentState 
                 ? "确认要撤销归档，将其重新放回【未做】列表吗？" 
                 : "🎉 太棒了！确定已经完成这场比赛，将其归档吗？";
 
-            // 弹出原生确认框
             if (confirm(message)) {
-                // 如果点了确定，修改 localStorage 里的状态
                 const doneMap = JSON.parse(localStorage.getItem('xcpc_done_records')) || {};
                 doneMap[contestId] = !currentState;
                 localStorage.setItem('xcpc_done_records', JSON.stringify(doneMap));
             }
             
-            // 无论确认还是取消，都重新渲染表格（如果是取消，可以把复选框的视觉状态强行还原）
             renderTables();
         }
 
-        // 初始化加载数据
         fetch('recent_xcpc_contests.json')
             .then(response => response.json())
             .then(data => {
