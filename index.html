@@ -3,56 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCPC Math Finder - 历年比赛</title>
+    <title>XCPC-Math-Finder</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f4f7f6; color: #333; }
-        h1 { text-align: center; color: #2c3e50; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: #34495e; color: white; font-weight: 600; }
-        tr:hover { background-color: #f8f9fa; }
-        a { color: #3498db; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; color: #2980b9; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        h1 { color: #2c3e50; margin-bottom: 40px; font-size: 3em; }
+        
+        /* 左右按钮容器 */
+        .card-container { display: flex; gap: 40px; }
+        
+        /* 按钮大卡片样式 */
+        .nav-card {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            width: 300px; height: 200px; background-color: #fff; border-radius: 15px;
+            text-decoration: none; /* 去除超链接自带的下划线 */
+            color: #333; font-size: 1.5em; font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* 鼠标悬停时的动画效果 */
+        .nav-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        
+        /* 左右两张卡片分别给点颜色点缀 */
+        .card-left { border-bottom: 5px solid #3498db; }
+        .card-right { border-bottom: 5px solid #e74c3c; }
+        
+        .sub-text { font-size: 0.5em; color: #7f8c8d; margin-top: 10px; font-weight: normal; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>XCPC 近三年比赛汇总池</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>比赛 ID</th>
-                    <th>比赛名称 (Gym)</th>
-                    <th>直达链接</th>
-                </tr>
-            </thead>
-            <tbody id="contest-list">
-                </tbody>
-        </table>
+
+    <h1>XCPC-Math-Finder</h1>
+    <h2>by-Bilibili:RavenMan</h2>
+    <div class="card-container">
+        <a href="contests.html" class="nav-card card-left">
+            近年XCPC汇总
+            <span class="sub-text">比赛汇总</span>
+        </a>
+
+        <a href="#" class="nav-card card-right">
+            数学题目训练
+            <span class="sub-text">针对性刷题单(建设中)</span>
+        </a>
     </div>
 
-    <script>
-        // 使用 Fetch API 读取你刚刚爬取下来的 JSON 文件
-        fetch('recent_xcpc_contests.json')
-            .then(response => response.json())
-            .then(data => {
-                const tbody = document.getElementById('contest-list');
-                data.forEach(contest => {
-                    const tr = document.createElement('tr');
-                    // 将每一场比赛的数据动态生成表格的行
-                    tr.innerHTML = `
-                        <td>${contest.id}</td>
-                        <td>${contest.name}</td>
-                        <td><a href="${contest.url}" target="_blank">进入靶场 🚀</a></td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            })
-            .catch(error => {
-                console.error('读取数据失败:', error);
-                document.getElementById('contest-list').innerHTML = '<tr><td colspan="3" style="text-align:center; color:red;">数据加载失败，请确保使用 Live Server 运行。</td></tr>';
-            });
-    </script>
 </body>
 </html>
