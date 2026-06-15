@@ -19,6 +19,21 @@ def load_existing_data():
         print(f"读取旧数据失败: {e}")
         return {}
 
+def fix_legacy_timestamps(existing_dict):
+    """专门用于修复旧 JSON 数据中 timestamp 为 0 的记录"""
+    fixed_count = 0
+    for contest_id, item in existing_dict.items():
+        if item.get("platform") == "Codeforces" and item.get("timestamp", 0) == 0:
+            name = item.get("name", "")
+            year_match = re.search(r'(20\d{2})', name)
+            if year_match:
+                year = int(year_match.group(1))
+                dt = datetime(year, 1, 1, tzinfo=timezone.utc)
+                item["timestamp"] = int(dt.timestamp())
+                fixed_count += 1
+                print(f"🔧 修复历史时间戳: {name} -> {year}年")
+    return fixed_count
+
 def fetch_cf_contests():
     print("🌍 正在连接 Codeforces API...")
     url = "https://codeforces.com/api/contest.list?gym=true"
@@ -33,15 +48,26 @@ def fetch_cf_contests():
                     for contest in data["result"]:
                         name = contest.get("name", "")
                         is_xcpc = "ICPC" in name or "CCPC" in name
-                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026","2027","2028","2029"])
+                        # 保留你原本的近几年筛选逻辑
+                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026"])
                         
                         if is_xcpc and is_recent:
+                            timestamp = contest.get("startTimeSeconds", 0)
+                            
+                            # 核心修复：如果没有时间戳，利用正则提取年份生成时间戳
+                            if timestamp == 0:
+                                year_match = re.search(r'(20\d{2})', name)
+                                if year_match:
+                                    year = int(year_match.group(1))
+                                    dt = datetime(year, 1, 1, tzinfo=timezone.utc)
+                                    timestamp = int(dt.timestamp())
+
                             results.append({
                                 "id": f"CF_{contest['id']}",
                                 "platform": "Codeforces",
                                 "name": name,
                                 "url": f"https://codeforces.com/gym/{contest['id']}",
-                                "timestamp": contest.get("startTimeSeconds", 0),
+                                "timestamp": timestamp,
                                 "duration": contest.get("durationSeconds", 0)
                             })
                     return results
@@ -64,8 +90,6 @@ def fetch_qoj_contests():
             
         soup = BeautifulSoup(response.text, 'html.parser')
         results = []
-        
-        # 🌟 状态初始化：默认第一个没有年份的比赛为 2026 年
         current_year = 2026
         
         for link in soup.find_all('a'):
@@ -74,16 +98,11 @@ def fetch_qoj_contests():
             
             if href.startswith('/contest/') and any(kw in name for kw in ["ICPC", "CCPC", "Universal Cup"]):
                 raw_id = href.split('/')[-1]
-                
-                # 🌟 正则表达式：寻找名称中类似 2023, 2024 这样的四位年份
                 year_match = re.search(r'(20\d{2})', name)
                 
                 if year_match:
-                    # 如果找到了年份，更新当前的状态记忆
                     current_year = int(year_match.group(1))
-                # 如果没找到，current_year 就会自然继承上一次循环的年份（或者初始的 2026）
                 
-                # 🌟 将推算出的年份的 1月1日 转换为标准时间戳 (UTC)
                 dt = datetime(current_year, 1, 1, tzinfo=timezone.utc)
                 timestamp = int(dt.timestamp())
                 
@@ -92,11 +111,10 @@ def fetch_qoj_contests():
                     "platform": "QOJ",
                     "name": name,
                     "url": f"https://qoj.ac{href}",
-                    "timestamp": timestamp,  # 注入动态生成的智能时间戳
+                    "timestamp": timestamp,
                     "duration": 18000
                 })
                 
-        # 去重并返回
         return list({item['id']: item for item in results}.values())
         
     except Exception as e:
@@ -107,6 +125,10 @@ def main():
     existing_dict = load_existing_data()
     print(f"📦 本地已加载 {len(existing_dict)} 条历史记录。")
 
+    # 1. 先修复本地可能存在的脏数据
+    fixed_count = fix_legacy_timestamps(existing_dict)
+
+    # 2. 抓取新数据
     all_fetched_data = fetch_cf_contests() + fetch_qoj_contests()
     
     added_count = 0
@@ -117,11 +139,12 @@ def main():
             added_count += 1
             print(f"✨ 新增: [{item['platform']}] {item['name']}")
 
-    if added_count > 0:
+    # 3. 只要有新增或者有修复，就执行写入
+    if added_count > 0 or fixed_count > 0:
         final_list = list(existing_dict.values())
         with open(FILE_PATH, "w", encoding="utf-8") as f:
             json.dump(final_list, f, ensure_ascii=False, indent=4)
-        print(f"\n✅ 更新完成！新增 {added_count} 场，总计：{len(final_list)} 场。")
+        print(f"\n✅ 更新完成！新增 {added_count} 场，修复 {fixed_count} 场，总计：{len(final_list)} 场。")
     else:
         print("\n✅ 已经是最新数据，保护手动修改内容，未做任何覆写。")
 
