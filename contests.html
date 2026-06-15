@@ -95,18 +95,19 @@
             todoBody.innerHTML = ''; doneBody.innerHTML = '';
             let todoCount = 0; let doneCount = 0;
 
-            // 核心修复：按时间戳降序排列 (没有时间的自动排在最后面)
-            let sortedData = [...globalData].sort((a, b) => {
-                let timeA = a.timestamp || 0;
-                let timeB = b.timestamp || 0;
-                return timeB - timeA;
-            });
+            // 核心修改：先过滤掉 duration 为 -1 的比赛，再按时间戳降序排列
+            let processedData = globalData
+                .filter(contest => contest.duration !== -1)
+                .sort((a, b) => {
+                    let timeA = a.timestamp || 0;
+                    let timeB = b.timestamp || 0;
+                    return timeB - timeA; // 降序：时间戳大的（近）排前面
+                });
 
-            sortedData.forEach(contest => {
+            processedData.forEach(contest => {
                 const isDone = doneMap[contest.id] || false;
                 const tr = document.createElement('tr');
                 
-                // 核心修复： toggleDone('${contest.id}'...) 加了单引号，支持字符串ID
                 tr.innerHTML = `
                     <td>
                         <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleDone('${contest.id}', ${isDone})">

@@ -33,7 +33,7 @@ def fetch_cf_contests():
                     for contest in data["result"]:
                         name = contest.get("name", "")
                         is_xcpc = "ICPC" in name or "CCPC" in name
-                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026"])
+                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026","2027","2028","2029"])
                         
                         if is_xcpc and is_recent:
                             results.append({
