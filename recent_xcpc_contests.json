@@ -731,7 +731,7 @@
     },
     {
         "id": 106534,
-        "name": "CCPC2026黑龙江省大学生程序设计竞赛",
+        "name": "2026 CCPC 黑龙江",
         "url": "https://codeforces.com/gym/106534"
     },
     {
@@ -741,17 +741,17 @@
     },
     {
         "id": 106554,
-        "name": "[Unofficial Mirror] 2026 CCPC National Invitational (Nanchang) and The 3rd Jiangxi Provincial Programming Contest",
+        "name": "2026 CCPC 南昌",
         "url": "https://codeforces.com/gym/106554"
     },
     {
         "id": 106565,
-        "name": "2026 National Invitational of CCPC (Fujian), The 13th Fujian Collegiate Programming Contest",
+        "name": "2026 CCPC 福建",
         "url": "https://codeforces.com/gym/106565"
     },
     {
         "id": 106570,
-        "name": "The 2026 ICPC China Sichuan Provincial Programming Contest",
+        "name": "2026 ICPC 四川",
         "url": "https://codeforces.com/gym/106570"
     }
 ]
