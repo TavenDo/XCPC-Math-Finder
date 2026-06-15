@@ -37,7 +37,6 @@ def fix_legacy_timestamps(existing_dict):
 def fetch_cf_contests():
     print("🌍 正在连接 Codeforces API...")
     url = "https://codeforces.com/api/contest.list?gym=true"
-    
     for attempt in range(3):
         try:
             response = requests.get(url, timeout=15)
@@ -48,20 +47,15 @@ def fetch_cf_contests():
                     for contest in data["result"]:
                         name = contest.get("name", "")
                         is_xcpc = "ICPC" in name or "CCPC" in name
-                        # 保留你原本的近几年筛选逻辑
-                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026"])
-                        
+                        is_recent = any(year in name for year in ["2023", "2024", "2025", "2026","2027","2028"])
                         if is_xcpc and is_recent:
                             timestamp = contest.get("startTimeSeconds", 0)
-                            
-                            # 核心修复：如果没有时间戳，利用正则提取年份生成时间戳
                             if timestamp == 0:
                                 year_match = re.search(r'(20\d{2})', name)
                                 if year_match:
                                     year = int(year_match.group(1))
                                     dt = datetime(year, 1, 1, tzinfo=timezone.utc)
                                     timestamp = int(dt.timestamp())
-
                             results.append({
                                 "id": f"CF_{contest['id']}",
                                 "platform": "Codeforces",
@@ -74,7 +68,6 @@ def fetch_cf_contests():
         except requests.exceptions.RequestException as e:
             print(f"⚠️ 第 {attempt + 1} 次请求 CF 失败: {e}")
             time.sleep(3)
-            
     print("❌ CF 抓取彻底失败。")
     return []
 

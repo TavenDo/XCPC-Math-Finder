@@ -4,48 +4,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XCPC-Math-Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        h1 { color: #2c3e50; margin-bottom: 40px; font-size: 3em; }
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6; /* 作为伪元素加载前的兜底背景色 */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 核心修改：自适应、居中、降低亮度的全屏背景图 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('BG.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: brightness(0.75); /* 降低亮度至 75%，可根据图片实际亮度自行调低（如0.6） */
+            z-index: -1; /* 确保在所有内容最底层 */
+        }
+
+        /* 顶端栏样式 */
+        header {
+            width: 100%;
+            background-color: #f39c12; 
+            color: white; 
+            padding: 10px 40px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left { display: flex; align-items: baseline; gap: 15px; }
+        .header-left h1 { margin: 0; font-size: 1.8em; letter-spacing: 1px; }
+        .header-left .author { font-size: 1em; opacity: 0.9; }
         
-        /* 左右按钮容器 */
-        .card-container { display: flex; gap: 40px; }
-        
-        /* 按钮大卡片样式 */
+        .header-right { display: flex; gap: 20px; font-size: 1.5em; }
+        .header-right a { color: white; transition: opacity 0.3s, transform 0.3s; text-decoration: none; }
+        .header-right a:hover { opacity: 0.8; transform: scale(1.1); }
+
+        /* 副标题与更新时间栏 */
+        .sub-header {
+            margin-top: 80px; 
+            width: 100%;
+            max-width: 1050px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sub-header h2 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2em;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.6); /* 增加白影增强在背景图上的可读性 */
+        }
+
+        /* 胶囊气泡变为半透明毛玻璃 */
+        .update-capsule {
+            background-color: rgba(232, 244, 248, 0.6); 
+            backdrop-filter: blur(5px); 
+            color: #2980b9;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(212, 230, 241, 0.6);
+        }
+
+        /* 核心矩阵 3x2 布局 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1050px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .grid-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .capsule-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 70px; 
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* 统计气泡变为半透明毛玻璃 */
+        .stat-capsule {
+            background-color: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(5px);
+            color: #34495e;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(238, 238, 238, 0.5);
+        }
+
+        .stat-capsule.empty {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            color: #7f8c8d;
+            border: 1px dashed rgba(127, 140, 141, 0.6);
+            box-shadow: none;
+        }
+
+        /* 导航卡片变为半透明，并完整保留/优化阴影效果 */
         .nav-card {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            width: 300px; height: 200px; background-color: #fff; border-radius: 15px;
-            text-decoration: none; /* 去除超链接自带的下划线 */
-            color: #333; font-size: 1.5em; font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%; height: 200px; 
+            background-color: rgba(255, 255, 255, 0.65); /* 半透明度 */
+            backdrop-filter: blur(10px); /* 强化卡片内部毛玻璃模糊度，突显文字 */
+            border-radius: 15px;
+            text-decoration: none; color: #333; font-size: 1.5em; font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* 调整了阴影，使其在复杂背景上更立体 */
+            transition: all 0.3s ease;
         }
         
-        /* 鼠标悬停时的动画效果 */
-        .nav-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .nav-card:hover { 
+            transform: translateY(-10px); 
+            background-color: rgba(255, 255, 255, 0.8); /* 悬浮时降低透明度增加交互感 */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
+        }
         
-        /* 左右两张卡片分别给点颜色点缀 */
         .card-left { border-bottom: 5px solid #3498db; }
-        .card-right { border-bottom: 5px solid #e74c3c; }
-        
-        .sub-text { font-size: 0.5em; color: #7f8c8d; margin-top: 10px; font-weight: normal; }
+        .card-center { border-bottom: 5px solid #e74c3c; }
+        .card-right { border-bottom: 5px solid #2ecc71; } 
+        .sub-text { font-size: 0.5em; color: #555; margin-top: 10px; font-weight: normal; }
     </style>
 </head>
 <body>
 
-    <h1>XCPC-Math-Finder</h1>
-    <h2>by-Bilibili:RavenMan</h2>
-    <div class="card-container">
-        <a href="contests.html" class="nav-card card-left">
-            近年XCPC汇总
-            <span class="sub-text">比赛汇总</span>
-        </a>
+    <header>
+        <div class="header-left">
+            <h1>XCPC-Math-Finder</h1>
+            <span class="author">by-RavenMan</span>
+        </div>
+        <div class="header-right">
+            <a href="https://github.com/TavenDo/XCPC-Math-Finder" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://space.bilibili.com/493224666" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a>
+        </div>
+    </header>
 
-        <a href="#" class="nav-card card-right">
-            数学题目训练
-            <span class="sub-text">针对性刷题单(建设中)</span>
-        </a>
+    <div class="sub-header">
+        <h2>算法竞赛数学训练助手</h2>
+        <div class="update-capsule" title="GitHub 仓库数据文件最后提交时间">
+            <i class="fa-regular fa-clock"></i> 上次更新：<span id="last-update-time">获取中...</span>
+        </div>
     </div>
 
+    <div class="main-grid">
+        <div class="grid-col">
+            <div class="capsule-group">
+                <div class="stat-capsule">已收录：<span id="total-contests">-</span> 场</div>
+                <div class="stat-capsule">已做完：<span id="done-contests">-</span> 场</div>
+            </div>
+            <a href="contests.html" class="nav-card card-left">
+                近年XCPC汇总
+                <span class="sub-text">比赛汇总 / 进度追踪</span>
+            </a>
+        </div>
+
+        <div class="grid-col">
+            <div class="capsule-group">
+                <div class="stat-capsule empty">专项数据规划中</div>
+                <div class="stat-capsule empty">专项数据规划中</div>
+            </div>
+            <a href="#" class="nav-card card-center">
+                数学题目训练
+                <span class="sub-text">针对性刷题单(建设中)</span>
+            </a>
+        </div>
+
+        <div class="grid-col">
+            <div class="capsule-group">
+                <div class="stat-capsule empty">题解统计规划中</div>
+                <div class="stat-capsule empty">题解统计规划中</div>
+            </div>
+            <a href="#" class="nav-card card-right">
+                个人题解收录
+                <span class="sub-text">思路复盘 / 知识沉淀</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        async function fetchLastUpdate() {
+            try {
+                const response = await fetch('https://api.github.com/repos/TavenDo/XCPC-Math-Finder/commits?path=recent_xcpc_contests.json&page=1&per_page=1');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        const dateObj = new Date(data[0].commit.committer.date);
+                        const formattedDate = `${dateObj.getFullYear()}年${dateObj.getMonth() + 1}月${dateObj.getDate()}日`;
+                        document.getElementById('last-update-time').innerText = formattedDate;
+                    } else {
+                        document.getElementById('last-update-time').innerText = "暂无提交记录";
+                    }
+                } else {
+                    document.getElementById('last-update-time').innerText = "API 限制/暂无";
+                }
+            } catch (error) {
+                console.error("无法获取更新时间:", error);
+                document.getElementById('last-update-time').innerText = "获取失败";
+            }
+        }
+
+        async function fetchContestStats() {
+            try {
+                const response = await fetch('recent_xcpc_contests.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('total-contests').innerText = data.length;
+                }
+            } catch (error) {
+                console.error("无法读取本地比赛数据:", error);
+            }
+
+            try {
+                const doneMap = JSON.parse(localStorage.getItem('xcpc_done_records')) || {};
+                const doneCount = Object.values(doneMap).filter(val => val === true).length;
+                document.getElementById('done-contests').innerText = doneCount;
+            } catch (error) {
+                console.error("无法读取本地存储记录:", error);
+            }
+        }
+
+        fetchLastUpdate();
+        fetchContestStats();
+    </script>
 </body>
 </html>
