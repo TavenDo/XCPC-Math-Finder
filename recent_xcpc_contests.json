@@ -1,757 +1,908 @@
 [
     {
-        "id": 103960,
+        "id": "CF_103960",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC Brazil Subregional Programming Contest",
         "url": "https://codeforces.com/gym/103960"
     },
     {
-        "id": 103993,
+        "id": "CF_103993",
+        "platform": "Codeforces",
         "name": "ICPC 2022-2023 NERC (NEERC), Southern and Volga Russia Qualifier",
         "url": "https://codeforces.com/gym/103993"
     },
     {
-        "id": 104012,
+        "id": "CF_104012",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)",
         "url": "https://codeforces.com/gym/104012"
     },
     {
-        "id": 104014,
+        "id": "CF_104014",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC NERC, квалификации Уральского региона и Северо-Запада России",
         "url": "https://codeforces.com/gym/104014"
     },
     {
-        "id": 104018,
+        "id": "CF_104018",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC NERC (NEERC), Kyrgyzstan Regional Contest",
         "url": "https://codeforces.com/gym/104018"
     },
     {
-        "id": 104030,
+        "id": "CF_104030",
+        "platform": "Codeforces",
         "name": "2022-2023 ACM-ICPC Nordic Collegiate Programming Contest (NCPC 2022)",
         "url": "https://codeforces.com/gym/104030"
     },
     {
-        "id": 104059,
+        "id": "CF_104059",
+        "platform": "Codeforces",
         "name": "2022-2023 ACM-ICPC German Collegiate Programming Contest (GCPC 2022)",
         "url": "https://codeforces.com/gym/104059"
     },
     {
-        "id": 104172,
+        "id": "CF_104172",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Hong Kong Regional Programming Contest (The 1st Universal Cup, Stage 2:Hong Kong)",
         "url": "https://codeforces.com/gym/104172"
     },
     {
-        "id": 104252,
+        "id": "CF_104252",
+        "platform": "Codeforces",
         "name": "2022-2023 ACM-ICPC Latin American Regional Programming Contest",
         "url": "https://codeforces.com/gym/104252"
     },
     {
-        "id": 104354,
+        "id": "CF_104354",
+        "platform": "Codeforces",
         "name": "2023 CCPC Henan Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/104354"
     },
     {
-        "id": 104375,
+        "id": "CF_104375",
+        "platform": "Codeforces",
         "name": "2023 ICPC Gran Premio de Mexico 1ra Fecha",
         "url": "https://codeforces.com/gym/104375"
     },
     {
-        "id": 104385,
+        "id": "CF_104385",
+        "platform": "Codeforces",
         "name": "2023 (ICPC) Jiangxi Provincial Contest -- Official Contest",
         "url": "https://codeforces.com/gym/104385"
     },
     {
-        "id": 104393,
+        "id": "CF_104393",
+        "platform": "Codeforces",
         "name": "ICPC Masters Mexico LATAM 2023",
         "url": "https://codeforces.com/gym/104393"
     },
     {
-        "id": 104396,
+        "id": "CF_104396",
+        "platform": "Codeforces",
         "name": "2023 Jiangsu Collegiate Programming Contest, 2023 National Invitational of CCPC (Hunan), The 13th Xiangtan Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/104396"
     },
     {
-        "id": 104412,
+        "id": "CF_104412",
+        "platform": "Codeforces",
         "name": "2023 ICPC Gran Premio de Mexico 2da Fecha",
         "url": "https://codeforces.com/gym/104412"
     },
     {
-        "id": 104466,
+        "id": "CF_104466",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC German Collegiate Programming Contest (GCPC 2023)",
         "url": "https://codeforces.com/gym/104466"
     },
     {
-        "id": 104493,
+        "id": "CF_104493",
+        "platform": "Codeforces",
         "name": "2023 ICPC HIAST Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/104493"
     },
     {
-        "id": 104555,
+        "id": "CF_104555",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC Brazil Subregional Programming Contest",
         "url": "https://codeforces.com/gym/104555"
     },
     {
-        "id": 104614,
+        "id": "CF_104614",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC East Central North America Regional Contest (ECNA 2022)",
         "url": "https://codeforces.com/gym/104614"
     },
     {
-        "id": 104619,
+        "id": "CF_104619",
+        "platform": "Codeforces",
         "name": "2023 ICPC Asia Taiwan Online Programming Contest",
         "url": "https://codeforces.com/gym/104619"
     },
     {
-        "id": 104639,
+        "id": "CF_104639",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia EC Regionals Online Contest (I)",
         "url": "https://codeforces.com/gym/104639"
     },
     {
-        "id": 104651,
+        "id": "CF_104651",
+        "platform": "Codeforces",
         "name": "The 2023 CCPC Online Contest",
         "url": "https://codeforces.com/gym/104651"
     },
     {
-        "id": 104671,
+        "id": "CF_104671",
+        "platform": "Codeforces",
         "name": "2023 ICPC Columbia University Local Contest",
         "url": "https://codeforces.com/gym/104671"
     },
     {
-        "id": 104686,
+        "id": "CF_104686",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC Central Europe Regional Contest (CERC 22)",
         "url": "https://codeforces.com/gym/104686"
     },
     {
-        "id": 104736,
+        "id": "CF_104736",
+        "platform": "Codeforces",
         "name": "2023-2024 ACM-ICPC Latin American Regional Programming Contest",
         "url": "https://codeforces.com/gym/104736"
     },
     {
-        "id": 104755,
+        "id": "CF_104755",
+        "platform": "Codeforces",
         "name": "LU ICPC Selection Contest 2023",
         "url": "https://codeforces.com/gym/104755"
     },
     {
-        "id": 104757,
+        "id": "CF_104757",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC East North America Regional Contest (ECNA 2023)",
         "url": "https://codeforces.com/gym/104757"
     },
     {
-        "id": 104758,
+        "id": "CF_104758",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Masters Mexico Regional #ICPCMX2023 Edition",
         "url": "https://codeforces.com/gym/104758"
     },
     {
-        "id": 104761,
+        "id": "CF_104761",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC NERC (NEERC), Kyrgyzstan Regional Contest",
         "url": "https://codeforces.com/gym/104761"
     },
     {
-        "id": 104760,
+        "id": "CF_104760",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC NERC (NEERC), Kyrgyzstan Qualification Contest",
         "url": "https://codeforces.com/gym/104760"
     },
     {
-        "id": 104768,
+        "id": "CF_104768",
+        "platform": "Codeforces",
         "name": "2023 China Collegiate Programming Contest (CCPC) Guilin Onsite (The 2nd Universal Cup. Stage 8: Guilin)",
         "url": "https://codeforces.com/gym/104768"
     },
     {
-        "id": 104772,
+        "id": "CF_104772",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)",
         "url": "https://codeforces.com/gym/104772"
     },
     {
-        "id": 104777,
+        "id": "CF_104777",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC, NERC, Southern and Volga Russian Regional Contest (problems intersect with Educational Codeforces Round 157)",
         "url": "https://codeforces.com/gym/104777"
     },
     {
-        "id": 104787,
+        "id": "CF_104787",
+        "platform": "Codeforces",
         "name": "The 2023 CCPC (Qinhuangdao) Onsite (The 2nd Universal Cup. Stage 9: Qinhuangdao)",
         "url": "https://codeforces.com/gym/104787"
     },
     {
-        "id": 104791,
+        "id": "CF_104791",
+        "platform": "Codeforces",
         "name": "The 2023 CCPC (Qinhuangdao) Onsite Warmup",
         "url": "https://codeforces.com/gym/104791"
     },
     {
-        "id": 104821,
+        "id": "CF_104821",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Nanjing Regional Contest (The 2nd Universal Cup. Stage 11: Nanjing)",
         "url": "https://codeforces.com/gym/104821"
     },
     {
-        "id": 104832,
+        "id": "CF_104832",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC, Asia Yokohama Regional Contest 2023",
         "url": "https://codeforces.com/gym/104832"
     },
     {
-        "id": 104849,
+        "id": "CF_104849",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC, Asia Yokohama Regional Contest 2022",
         "url": "https://codeforces.com/gym/104849"
     },
     {
-        "id": 104854,
+        "id": "CF_104854",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC, Swiss Subregional",
         "url": "https://codeforces.com/gym/104854"
     },
     {
-        "id": 104857,
+        "id": "CF_104857",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Hefei Regional Contest (The 2nd Universal Cup. Stage 12: Hefei)",
         "url": "https://codeforces.com/gym/104857"
     },
     {
-        "id": 104869,
+        "id": "CF_104869",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Shenyang Regional Contest (The 2nd Universal Cup. Stage 13: Shenyang)",
         "url": "https://codeforces.com/gym/104869"
     },
     {
-        "id": 104871,
+        "id": "CF_104871",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC Central Europe Regional Contest (CERC 23)",
         "url": "https://codeforces.com/gym/104871"
     },
     {
-        "id": 104875,
+        "id": "CF_104875",
+        "platform": "Codeforces",
         "name": "2022-2023 ICPC Northwestern European Regional Programming Contest (NWERC 2022)",
         "url": "https://codeforces.com/gym/104875"
     },
     {
-        "id": 104891,
+        "id": "CF_104891",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Macau Regional Contest (The 2nd Universal Cup. Stage 15: Macau)",
         "url": "https://codeforces.com/gym/104891"
     },
     {
-        "id": 104901,
+        "id": "CF_104901",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Jinan Regional Contest (The 2nd Universal Cup. Stage 17: Jinan)",
         "url": "https://codeforces.com/gym/104901"
     },
     {
-        "id": 104945,
+        "id": "CF_104945",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC Southwestern European Regional Contest (SWERC 2023)",
         "url": "https://codeforces.com/gym/104945"
     },
     {
-        "id": 104976,
+        "id": "CF_104976",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Hangzhou Regional Contest (The 2nd Universal Cup. Stage 22: Hangzhou)",
         "url": "https://codeforces.com/gym/104976"
     },
     {
-        "id": 105053,
+        "id": "CF_105053",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Latin America Championship",
         "url": "https://codeforces.com/gym/105053"
     },
     {
-        "id": 105064,
+        "id": "CF_105064",
+        "platform": "Codeforces",
         "name": "ICPC-de-Tryst 2024",
         "url": "https://codeforces.com/gym/105064"
     },
     {
-        "id": 105112,
+        "id": "CF_105112",
+        "platform": "Codeforces",
         "name": "2023-2024 ICPC Northwestern European Regional Programming Contest (NWERC 2023)",
         "url": "https://codeforces.com/gym/105112"
     },
     {
-        "id": 105143,
+        "id": "CF_105143",
+        "platform": "Codeforces",
         "name": "2024 ICPC National Invitational Collegiate Programming Contest, Wuhan Site",
         "url": "https://codeforces.com/gym/105143"
     },
     {
-        "id": 105158,
+        "id": "CF_105158",
+        "platform": "Codeforces",
         "name": "2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105158"
     },
     {
-        "id": 105164,
+        "id": "CF_105164",
+        "platform": "Codeforces",
         "name": "2024 ICPC Gran Premio de Mexico 1ra Fecha",
         "url": "https://codeforces.com/gym/105164"
     },
     {
-        "id": 105170,
+        "id": "CF_105170",
+        "platform": "Codeforces",
         "name": "The 2024 CCPC National Invitational Contest (Changchun) , The 17th Jilin Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105170"
     },
     {
-        "id": 105173,
+        "id": "CF_105173",
+        "platform": "Codeforces",
         "name": "The 2024 CCPC National Invitational Contest (Northeast), The 18th Northeast Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105173"
     },
     {
-        "id": 105216,
+        "id": "CF_105216",
+        "platform": "Codeforces",
         "name": "2024 ICPC Gran Premio de Mexico 2da Fecha",
         "url": "https://codeforces.com/gym/105216"
     },
     {
-        "id": 105231,
+        "id": "CF_105231",
+        "platform": "Codeforces",
         "name": "2024 (ICPC) Jiangxi Provincial Contest -- Official Contest",
         "url": "https://codeforces.com/gym/105231"
     },
     {
-        "id": 105230,
+        "id": "CF_105230",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC Bolivia Pre-National Contest",
         "url": "https://codeforces.com/gym/105230"
     },
     {
-        "id": 105255,
+        "id": "CF_105255",
+        "platform": "Codeforces",
         "name": "2023 ICPC World Finals",
         "url": "https://codeforces.com/gym/105255"
     },
     {
-        "id": 105257,
+        "id": "CF_105257",
+        "platform": "Codeforces",
         "name": "2024 ICPC ShaanXi Provincial Contest",
         "url": "https://codeforces.com/gym/105257"
     },
     {
-        "id": 105278,
+        "id": "CF_105278",
+        "platform": "Codeforces",
         "name": "2024 ICPC Universidad Nacional de Colombia Programming Contest",
         "url": "https://codeforces.com/gym/105278"
     },
     {
-        "id": 105307,
+        "id": "CF_105307",
+        "platform": "Codeforces",
         "name": "ICPC 2024 Thailand - Chulalongkorn University Internal Round",
         "url": "https://codeforces.com/gym/105307"
     },
     {
-        "id": 105327,
+        "id": "CF_105327",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC Brazil Subregional Programming Contest",
         "url": "https://codeforces.com/gym/105327"
     },
     {
-        "id": 105335,
+        "id": "CF_105335",
+        "platform": "Codeforces",
         "name": "ICPC Thailand National Competition 2024",
         "url": "https://codeforces.com/gym/105335"
     },
     {
-        "id": 105336,
+        "id": "CF_105336",
+        "platform": "Codeforces",
         "name": "The 2024 CCPC Online Contest",
         "url": "https://codeforces.com/gym/105336"
     },
     {
-        "id": 105358,
+        "id": "CF_105358",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia EC Regionals Online Contest (II)",
         "url": "https://codeforces.com/gym/105358"
     },
     {
-        "id": 105383,
+        "id": "CF_105383",
+        "platform": "Codeforces",
         "name": "2024 ICPC Asia Taiwan Online Programming Contest",
         "url": "https://codeforces.com/gym/105383"
     },
     {
-        "id": 105385,
+        "id": "CF_105385",
+        "platform": "Codeforces",
         "name": "The 2024 CCPC Shandong Invitational Contest and Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105385"
     },
     {
-        "id": 105387,
+        "id": "CF_105387",
+        "platform": "Codeforces",
         "name": "ICPC Central Russia Regional Contest, 2023",
         "url": "https://codeforces.com/gym/105387"
     },
     {
-        "id": 105386,
+        "id": "CF_105386",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Kunming Invitational Contest",
         "url": "https://codeforces.com/gym/105386"
     },
     {
-        "id": 105394,
+        "id": "CF_105394",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC German Collegiate Programming Contest (GCPC 2024)",
         "url": "https://codeforces.com/gym/105394"
     },
     {
-        "id": 105401,
+        "id": "CF_105401",
+        "platform": "Codeforces",
         "name": "2024 KAIST 14th ICPC Mock Competition",
         "url": "https://codeforces.com/gym/105401"
     },
     {
-        "id": 105408,
+        "id": "CF_105408",
+        "platform": "Codeforces",
         "name": "2024 ICPC Gran Premio de Mexico Repechaje",
         "url": "https://codeforces.com/gym/105408"
     },
     {
-        "id": 105424,
+        "id": "CF_105424",
+        "platform": "Codeforces",
         "name": "2023-2024 Квалификационный тур Уральского четвертьфинала ICPC",
         "url": "https://codeforces.com/gym/105424"
     },
     {
-        "id": 105427,
+        "id": "CF_105427",
+        "platform": "Codeforces",
         "name": "2023-2024 ACM-ICPC Nordic Collegiate Programming Contest (NCPC 2023)",
         "url": "https://codeforces.com/gym/105427"
     },
     {
-        "id": 105431,
+        "id": "CF_105431",
+        "platform": "Codeforces",
         "name": "2024-2025 ACM-ICPC Nordic Collegiate Programming Contest (NCPC 2024)",
         "url": "https://codeforces.com/gym/105431"
     },
     {
-        "id": 105437,
+        "id": "CF_105437",
+        "platform": "Codeforces",
         "name": "ICPC 2024-2025 NERC, Southern and Volga Russia Qualifier",
         "url": "https://codeforces.com/gym/105437"
     },
     {
-        "id": 105453,
+        "id": "CF_105453",
+        "platform": "Codeforces",
         "name": "2024 ICPC Greece Regional Collegiate Programming Contest (GRCPC 2024)",
         "url": "https://codeforces.com/gym/105453"
     },
     {
-        "id": 105459,
+        "id": "CF_105459",
+        "platform": "Codeforces",
         "name": "2024 China Collegiate Programming Contest (CCPC) Harbin Onsite (The 3rd Universal Cup. Stage 14: Harbin)",
         "url": "https://codeforces.com/gym/105459"
     },
     {
-        "id": 105461,
+        "id": "CF_105461",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC, Swiss Subregional",
         "url": "https://codeforces.com/gym/105461"
     },
     {
-        "id": 105465,
+        "id": "CF_105465",
+        "platform": "Codeforces",
         "name": "2023 ICPC Southeastern Europe Regional Contest (The 2nd Universal Cup, Stage 14: Southeastern Europe)",
         "url": "https://codeforces.com/gym/105465"
     },
     {
-        "id": 105471,
+        "id": "CF_105471",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Xian Regional Contest (The 3rd Universal Cup. Stage 9: Xian)",
         "url": "https://codeforces.com/gym/105471"
     },
     {
-        "id": 105481,
+        "id": "CF_105481",
+        "platform": "Codeforces",
         "name": "2024 CCPC Liaoning Provincial Contest",
         "url": "https://codeforces.com/gym/105481"
     },
     {
-        "id": 105484,
+        "id": "CF_105484",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Nanjing Regional Contest (The 3rd Universal Cup. Stage 16: Nanjing)",
         "url": "https://codeforces.com/gym/105484"
     },
     {
-        "id": 105487,
+        "id": "CF_105487",
+        "platform": "Codeforces",
         "name": "2024 China Collegiate Programming Contest (CCPC) Female Onsite (2024年中国大学生程序设计竞赛女生专场)",
         "url": "https://codeforces.com/gym/105487"
     },
     {
-        "id": 105486,
+        "id": "CF_105486",
+        "platform": "Codeforces",
         "name": "2024 ICPC Asia Chengdu Regional Contest (The 3rd Universal Cup. Stage 15: Chengdu)",
         "url": "https://codeforces.com/gym/105486"
     },
     {
-        "id": 105493,
+        "id": "CF_105493",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC NERC, Kyrgyzstan Regional Contest",
         "url": "https://codeforces.com/gym/105493"
     },
     {
-        "id": 105494,
+        "id": "CF_105494",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC NERC, Kyrgyzstan Qualification Contest",
         "url": "https://codeforces.com/gym/105494"
     },
     {
-        "id": 105505,
+        "id": "CF_105505",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC Latin American Regional Programming Contest",
         "url": "https://codeforces.com/gym/105505"
     },
     {
-        "id": 105535,
+        "id": "CF_105535",
+        "platform": "Codeforces",
         "name": "2024 ICPC Belarus Regional Contest",
         "url": "https://codeforces.com/gym/105535"
     },
     {
-        "id": 105537,
+        "id": "CF_105537",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)",
         "url": "https://codeforces.com/gym/105537"
     },
     {
-        "id": 105540,
+        "id": "CF_105540",
+        "platform": "Codeforces",
         "name": "2024 China Collegiate Programming Contest (CCPC) Jinan Site (The 3rd Universal Cup. Stage 17: Jinan)",
         "url": "https://codeforces.com/gym/105540"
     },
     {
-        "id": 105544,
+        "id": "CF_105544",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Taoyuan Regional Programming Contest",
         "url": "https://codeforces.com/gym/105544"
     },
     {
-        "id": 105562,
+        "id": "CF_105562",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC Northwestern European Regional Programming Contest (NWERC 2024)",
         "url": "https://codeforces.com/gym/105562"
     },
     {
-        "id": 105578,
+        "id": "CF_105578",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Shenyang Regional Contest (The 3rd Universal Cup. Stage 19: Shenyang)",
         "url": "https://codeforces.com/gym/105578"
     },
     {
-        "id": 105584,
+        "id": "CF_105584",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Japan Online First-Round Contest",
         "url": "https://codeforces.com/gym/105584"
     },
     {
-        "id": 105588,
+        "id": "CF_105588",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Kunming Regional Contest (The 3rd Universal Cup. Stage 20: Kunming)",
         "url": "https://codeforces.com/gym/105588"
     },
     {
-        "id": 105627,
+        "id": "CF_105627",
+        "platform": "Codeforces",
         "name": "The 2023 ICPC Asia Tehran Regional Contest",
         "url": "https://codeforces.com/gym/105627"
     },
     {
-        "id": 105633,
+        "id": "CF_105633",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Yokohama Regional Contest",
         "url": "https://codeforces.com/gym/105633"
     },
     {
-        "id": 105632,
+        "id": "CF_105632",
+        "platform": "Codeforces",
         "name": "2024 China Collegiate Programming Contest (CCPC) Zhengzhou Onsite (The 3rd Universal Cup. Stage 22: Zhengzhou)",
         "url": "https://codeforces.com/gym/105632"
     },
     {
-        "id": 105657,
+        "id": "CF_105657",
+        "platform": "Codeforces",
         "name": "The 2024 ICPC Asia Hangzhou Regional Contest (The 3rd Universal Cup. Stage 25: Hangzhou)",
         "url": "https://codeforces.com/gym/105657"
     },
     {
-        "id": 105669,
+        "id": "CF_105669",
+        "platform": "Codeforces",
         "name": "Combinatorics Contest - Brazilian ICPC Summer School 2025",
         "url": "https://codeforces.com/gym/105669"
     },
     {
-        "id": 105677,
+        "id": "CF_105677",
+        "platform": "Codeforces",
         "name": "2024-2025 ICPC Southwestern European Regional Contest (SWERC 2024)",
         "url": "https://codeforces.com/gym/105677"
     },
     {
-        "id": 105789,
+        "id": "CF_105789",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Latin America Championship",
         "url": "https://codeforces.com/gym/105789"
     },
     {
-        "id": 105873,
+        "id": "CF_105873",
+        "platform": "Codeforces",
         "name": "2025 ICPC Gran Premio de Mexico 1ra Fecha",
         "url": "https://codeforces.com/gym/105873"
     },
     {
-        "id": 105901,
+        "id": "CF_105901",
+        "platform": "Codeforces",
         "name": "2025 ICPC Wuhan Invitational Contest (The 3rd Universal Cup. Stage 37: Wuhan)",
         "url": "https://codeforces.com/gym/105901"
     },
     {
-        "id": 105911,
+        "id": "CF_105911",
+        "platform": "Codeforces",
         "name": "2025 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105911"
     },
     {
-        "id": 105924,
+        "id": "CF_105924",
+        "platform": "Codeforces",
         "name": "The 2025 CCPC National Invitational Contest (Northeast), The 19th Northeast Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105924"
     },
     {
-        "id": 105941,
+        "id": "CF_105941",
+        "platform": "Codeforces",
         "name": "2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105941"
     },
     {
-        "id": 105977,
+        "id": "CF_105977",
+        "platform": "Codeforces",
         "name": "2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/105977"
     },
     {
-        "id": 105979,
+        "id": "CF_105979",
+        "platform": "Codeforces",
         "name": "2025 ICPC Gran Premio de Mexico 2da Fecha",
         "url": "https://codeforces.com/gym/105979"
     },
     {
-        "id": 106017,
+        "id": "CF_106017",
+        "platform": "Codeforces",
         "name": "2025 ICPC Universidad Nacional de Colombia Programming Contest",
         "url": "https://codeforces.com/gym/106017"
     },
     {
-        "id": 106030,
+        "id": "CF_106030",
+        "platform": "Codeforces",
         "name": "2024 China Collegiate Programming Contest (CCPC) Chongqing Onsite",
         "url": "https://codeforces.com/gym/106030"
     },
     {
-        "id": 106032,
+        "id": "CF_106032",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Syrian Private Universities Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/106032"
     },
     {
-        "id": 106035,
+        "id": "CF_106035",
+        "platform": "Codeforces",
         "name": "ICPC Central Russia Regional Contest, 2024",
         "url": "https://codeforces.com/gym/106035"
     },
     {
-        "id": 106034,
+        "id": "CF_106034",
+        "platform": "Codeforces",
         "name": "ICPC Central Russia Regional Qualification Round, 2024",
         "url": "https://codeforces.com/gym/106034"
     },
     {
-        "id": 106063,
+        "id": "CF_106063",
+        "platform": "Codeforces",
         "name": "2025 ICPC Gran Premio de Mexico 3ra Fecha",
         "url": "https://codeforces.com/gym/106063"
     },
     {
-        "id": 106069,
+        "id": "CF_106069",
+        "platform": "Codeforces",
         "name": "ICPC Thailand National Contest 2025 (Partial)",
         "url": "https://codeforces.com/gym/106069"
     },
     {
-        "id": 106073,
+        "id": "CF_106073",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC South America - Brazil First Phase",
         "url": "https://codeforces.com/gym/106073"
     },
     {
-        "id": 106072,
+        "id": "CF_106072",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Asia EC Regionals Online Contest (II)",
         "url": "https://codeforces.com/gym/106072"
     },
     {
-        "id": 106084,
+        "id": "CF_106084",
+        "platform": "Codeforces",
         "name": "2025 ICPC Asia Taiwan Online Programming Contest",
         "url": "https://codeforces.com/gym/106084"
     },
     {
-        "id": 106110,
+        "id": "CF_106110",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC NERC, Kyrgyzstan Qualification Contest",
         "url": "https://codeforces.com/gym/106110"
     },
     {
-        "id": 106118,
+        "id": "CF_106118",
+        "platform": "Codeforces",
         "name": "2025 ICPC, Chula Selection Contest",
         "url": "https://codeforces.com/gym/106118"
     },
     {
-        "id": 106124,
+        "id": "CF_106124",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC Nordic Collegiate Programming Contest (NCPC 2025)",
         "url": "https://codeforces.com/gym/106124"
     },
     {
-        "id": 106129,
+        "id": "CF_106129",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC German Collegiate Programming Contest (GCPC 2025)",
         "url": "https://codeforces.com/gym/106129"
     },
     {
-        "id": 106144,
+        "id": "CF_106144",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC, NERC, Southern and Volga Russian Regional Contest",
         "url": "https://codeforces.com/gym/106144"
     },
     {
-        "id": 106151,
+        "id": "CF_106151",
+        "platform": "Codeforces",
         "name": "2025 ICPC Greek Collegiate Programming Contest (GRCPC 2025)",
         "url": "https://codeforces.com/gym/106151"
     },
     {
-        "id": 106161,
+        "id": "CF_106161",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Asia Chengdu Regional Contest (The 4rd Universal Cup. Stage 4: Grand Prix of Chengdu)",
         "url": "https://codeforces.com/gym/106161"
     },
     {
-        "id": 106164,
+        "id": "CF_106164",
+        "platform": "Codeforces",
         "name": "ICPC Asia Bangkok Regional Contest 2025",
         "url": "https://codeforces.com/gym/106164"
     },
     {
-        "id": 106169,
+        "id": "CF_106169",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC NERC, Kyrgyzstan Regional Contest",
         "url": "https://codeforces.com/gym/106169"
     },
     {
-        "id": 106179,
+        "id": "CF_106179",
+        "platform": "Codeforces",
         "name": "ICPC India Online Prelims (2025 - 2026)",
         "url": "https://codeforces.com/gym/106179"
     },
     {
-        "id": 106178,
+        "id": "CF_106178",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC Latin American Regional Programming Contest",
         "url": "https://codeforces.com/gym/106178"
     },
     {
-        "id": 106185,
+        "id": "CF_106185",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Japan Online First Round Contest",
         "url": "https://codeforces.com/gym/106185"
     },
     {
-        "id": 106184,
+        "id": "CF_106184",
+        "platform": "Codeforces",
         "name": "The 2025 China Collegiate Programming Contest (CCPC) Harbin Onsite Warmup",
         "url": "https://codeforces.com/gym/106184"
     },
     {
-        "id": 106189,
+        "id": "CF_106189",
+        "platform": "Codeforces",
         "name": "ICPC Central Russia Regional Contest, 2025",
         "url": "https://codeforces.com/gym/106189"
     },
     {
-        "id": 106193,
+        "id": "CF_106193",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)",
         "url": "https://codeforces.com/gym/106193"
     },
     {
-        "id": 106225,
+        "id": "CF_106225",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC Southwestern European Regional Contest (SWERC 2025)",
         "url": "https://codeforces.com/gym/106225"
     },
     {
-        "id": 106252,
+        "id": "CF_106252",
+        "platform": "Codeforces",
         "name": "The 2025 ICPC Asia Shenyang Regional Contest (The 4th Universal Cup. Stage 6: Grand Prix of Shenyang)",
         "url": "https://codeforces.com/gym/106252"
     },
     {
-        "id": 106262,
+        "id": "CF_106262",
+        "platform": "Codeforces",
         "name": "2025 ICPC Asia Manila Regional",
         "url": "https://codeforces.com/gym/106262"
     },
     {
-        "id": 106270,
+        "id": "CF_106270",
+        "platform": "Codeforces",
         "name": "ICPC Asia Dhaka Regional Onsite 2025 — Replay Contest",
         "url": "https://codeforces.com/gym/106270"
     },
     {
-        "id": 106315,
+        "id": "CF_106315",
+        "platform": "Codeforces",
         "name": "ICPC Dhaka 2025 Online Preliminary - Replay Contest",
         "url": "https://codeforces.com/gym/106315"
     },
     {
-        "id": 106331,
+        "id": "CF_106331",
+        "platform": "Codeforces",
         "name": "Brazilian ICPC Summer School 2026 problems",
         "url": "https://codeforces.com/gym/106331"
     },
     {
-        "id": 106353,
+        "id": "CF_106353",
+        "platform": "Codeforces",
         "name": "2025-2026 ICPC Northwestern European Regional Programming Contest (NWERC 2025)",
         "url": "https://codeforces.com/gym/106353"
     },
     {
-        "id": 106396,
+        "id": "CF_106396",
+        "platform": "Codeforces",
         "name": "Tiangong University 2025 ICPC Team Selection Contest II (Online Mirror)",
         "url": "https://codeforces.com/gym/106396"
     },
     {
-        "id": 106416,
+        "id": "CF_106416",
+        "platform": "Codeforces",
         "name": "The 2026 ICPC Latin America Championship",
         "url": "https://codeforces.com/gym/106416"
     },
     {
-        "id": 106495,
+        "id": "CF_106495",
+        "platform": "Codeforces",
         "name": "2026 ICPC Gran Premio de Mexico 1ra Fecha",
         "url": "https://codeforces.com/gym/106495"
     },
     {
-        "id": 106534,
-        "name": "2026 CCPC 黑龙江",
+        "id": "CF_106534",
+        "platform": "Codeforces",
+        "name": "CCPC2026黑龙江省大学生程序设计竞赛",
         "url": "https://codeforces.com/gym/106534"
     },
     {
-        "id": 106540,
+        "id": "CF_106540",
+        "platform": "Codeforces",
         "name": "2026 ICPC Gran Premio de Mexico 2da Fecha",
         "url": "https://codeforces.com/gym/106540"
     },
     {
-        "id": 106554,
-        "name": "2026 CCPC 南昌",
+        "id": "CF_106554",
+        "platform": "Codeforces",
+        "name": "[Unofficial Mirror] 2026 CCPC National Invitational (Nanchang) and The 3rd Jiangxi Provincial Programming Contest",
         "url": "https://codeforces.com/gym/106554"
     },
     {
-        "id": 106565,
-        "name": "2026 CCPC 福建",
+        "id": "CF_106565",
+        "platform": "Codeforces",
+        "name": "2026 National Invitational of CCPC (Fujian), The 13th Fujian Collegiate Programming Contest",
         "url": "https://codeforces.com/gym/106565"
     },
     {
-        "id": 106570,
-        "name": "2026 ICPC 四川",
+        "id": "CF_106570",
+        "platform": "Codeforces",
+        "name": "The 2026 ICPC China Sichuan Provincial Programming Contest",
         "url": "https://codeforces.com/gym/106570"
     }
 ]

@@ -122,7 +122,7 @@
                 
                 tr.innerHTML = `
                     <td>
-                        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleDone(${contest.id}, ${isDone})">
+                        <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleDone('${contest.id}', ${isDone})">
                     </td>
                     <td>${contest.id}</td>
                     <td>${contest.name}</td>
