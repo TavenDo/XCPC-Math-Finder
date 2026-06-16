@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人题解收录 - XCPC-Math-Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6; 
+            color: #333; 
+            scroll-behavior: smooth; 
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 统一的全屏暗化毛玻璃背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('BG.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: brightness(0.75); 
+            z-index: -1; 
+        }
+        
+        /* 规范顶端栏 (橙黄主题) */
+        header {
+            width: 100%;
+            background-color: #f39c12; 
+            color: white; 
+            padding: 10px 40px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left { display: flex; align-items: baseline; gap: 15px; }
+        .header-left h1 { margin: 0; font-size: 1.8em; letter-spacing: 1px; }
+        .header-left .author { font-size: 1em; opacity: 0.9; }
+        
+        .header-right-nav { display: flex; align-items: center; }
+        .back-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        /* 顶部工具栏 (搜索框定位) */
+        .toolbar {
+            max-width: 900px; /* 题解列表较简单，适度缩窄页面主视区使其更聚焦 */
+            width: 100%;
+            margin: 90px auto 10px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .search-box {
+            background-color: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 350px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .search-box i { color: #f39c12; } /* 搜索图标统一为橙黄 */
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 1em;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        .search-box input::placeholder { color: #95a5a6; }
+
+        /* 主体容器 */
+        .container { 
+            max-width: 900px; 
+            width: 100%; 
+            margin: 0 auto; 
+            padding: 10px 20px 100px 20px; 
+            box-sizing: border-box; 
+        }
+
+        .section-title { 
+            color: #fff; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 10px;
+        }
+        .section-title i { color: #f39c12; }
+        .section-divider { border: 0; height: 3px; background: linear-gradient(to right, #f39c12, transparent); margin-bottom: 25px; }
+
+        /* 表格与毛玻璃设计 */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background-color: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(238, 238, 238, 0.5); }
+        th { background-color: rgba(44, 62, 80, 0.9); color: white; font-weight: 600; font-size: 1em; }
+        td { color: #2c3e50; font-weight: 500; font-size: 1em; transition: background-color 0.3s; }
+        tr:hover td { background-color: rgba(255, 255, 255, 0.5); }
+        
+        /* 播放图标列 */
+        .icon-col { width: 50px; text-align: center; color: #f39c12; font-size: 1.2em; }
+
+        /* 跳转按钮专属橙黄色系优化 */
+        a.link-btn { 
+            color: #e67e22; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        a.link-btn:hover { 
+            color: #d35400; 
+            transform: translateX(3px);
+        }
+
+        .empty-state { text-align: center; padding: 30px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-weight: bold; font-size: 1.1em; background: rgba(0,0,0,0.2); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1>XCPC-Math-Finder</h1>
+            <span class="author">🎬 个人题解收录</span>
+        </div>
+        <div class="header-right-nav">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-house"></i> 返回主页</a>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search-input" placeholder="搜索题解标题..." oninput="handleSearch()">
+        </div>
+    </div>
+
+    <div class="container" id="main-container">
+        <h2 class="section-title"><i class="fa-brands fa-bilibili"></i> 视频题解库</h2>
+        <hr class="section-divider">
+        <div id="table-wrapper">
+            </div>
+    </div>
+
+    <script>
+        let globalVideoData = [];
+        const tableWrapper = document.getElementById('table-wrapper');
+
+        function handleSearch() {
+            const keyword = document.getElementById('search-input').value.trim();
+            renderVideos(keyword);
+        }
+
+        function renderVideos(filterKeyword = '') {
+            const keyword = filterKeyword.toLowerCase();
+            
+            let filteredData = globalVideoData;
+            if (keyword) {
+                filteredData = globalVideoData.filter(item => 
+                    (item.title || '').toLowerCase().includes(keyword)
+                );
+            }
+
+            if (filteredData.length === 0) {
+                tableWrapper.innerHTML = `<div class="empty-state">暂无相关题解记录。</div>`;
+                return;
+            }
+
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="icon-col"></th>
+                            <th>题解标题</th>
+                            <th width="150px">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // 倒序排列，让最新录入的显示在最上面
+            [...filteredData].reverse().forEach((video, index) => {
+                html += `
+                    <tr>
+                        <td class="icon-col"><i class="fa-solid fa-circle-play"></i></td>
+                        <td><strong>${video.title}</strong></td>
+                        <td><a href="${video.url}" target="_blank" class="link-btn">去观看 <i class="fa-solid fa-arrow-right"></i></a></td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table>`;
+            tableWrapper.innerHTML = html;
+        }
+
+        // 初始化加载数据
+        fetch('video_solutions.json')
+            .then(res => res.json())
+            .then(data => {
+                globalVideoData = data;
+                renderVideos();
+            })
+            .catch(err => {
+                console.error("加载题解库失败", err);
+                tableWrapper.innerHTML = `<div class="empty-state" style="color:#e74c3c; background:rgba(255,255,255,0.8);">⚠️ 无法读取题解数据，请确保已生成 video_solutions.json。</div>`;
+            });
+    </script>
+</body>
+</html>

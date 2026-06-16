@@ -1,0 +1,24 @@
+[
+    {
+        "id": "Codeforces_106565_K",
+        "platform": "Codeforces",
+        "contest_name": "2026CC福建",
+        "contest_url": "https://codeforces.com/gym/106565",
+        "problem_id": "K",
+        "category": "计数问题",
+        "subcategory": "组合数学",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_106565_L",
+        "platform": "Codeforces",
+        "contest_name": "2026CC福建",
+        "contest_url": "https://codeforces.com/gym/106565",
+        "problem_id": "L",
+        "category": "概率与期望",
+        "subcategory": "拆贡献",
+        "difficulty": "Medium",
+        "status": false
+    }
+]

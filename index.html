@@ -9,7 +9,7 @@
         body { 
             margin: 0; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f4f7f6; /* 作为伪元素加载前的兜底背景色 */
+            background-color: #f4f7f6; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -17,7 +17,6 @@
             position: relative;
         }
 
-        /* 核心修改：自适应、居中、降低亮度的全屏背景图 */
         body::before {
             content: "";
             position: fixed;
@@ -29,11 +28,10 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            filter: brightness(0.75); /* 降低亮度至 75%，可根据图片实际亮度自行调低（如0.6） */
-            z-index: -1; /* 确保在所有内容最底层 */
+            filter: brightness(0.75); 
+            z-index: -1; 
         }
 
-        /* 顶端栏样式 */
         header {
             width: 100%;
             background-color: #f39c12; 
@@ -57,7 +55,6 @@
         .header-right a { color: white; transition: opacity 0.3s, transform 0.3s; text-decoration: none; }
         .header-right a:hover { opacity: 0.8; transform: scale(1.1); }
 
-        /* 副标题与更新时间栏 */
         .sub-header {
             margin-top: 80px; 
             width: 100%;
@@ -74,10 +71,9 @@
             margin: 0;
             color: #2c3e50;
             font-size: 2em;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.6); /* 增加白影增强在背景图上的可读性 */
+            text-shadow: 0 1px 3px rgba(255,255,255,0.6); 
         }
 
-        /* 胶囊气泡变为半透明毛玻璃 */
         .update-capsule {
             background-color: rgba(232, 244, 248, 0.6); 
             backdrop-filter: blur(5px); 
@@ -92,7 +88,6 @@
             border: 1px solid rgba(212, 230, 241, 0.6);
         }
 
-        /* 核心矩阵 3x2 布局 */
         .main-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -120,7 +115,6 @@
             width: 100%;
         }
 
-        /* 统计气泡变为半透明毛玻璃 */
         .stat-capsule {
             background-color: rgba(255, 255, 255, 0.65); 
             backdrop-filter: blur(5px);
@@ -141,21 +135,20 @@
             box-shadow: none;
         }
 
-        /* 导航卡片变为半透明，并完整保留/优化阴影效果 */
         .nav-card {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             width: 100%; height: 200px; 
-            background-color: rgba(255, 255, 255, 0.65); /* 半透明度 */
-            backdrop-filter: blur(10px); /* 强化卡片内部毛玻璃模糊度，突显文字 */
+            background-color: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(10px); 
             border-radius: 15px;
             text-decoration: none; color: #333; font-size: 1.5em; font-weight: bold;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* 调整了阴影，使其在复杂背景上更立体 */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
             transition: all 0.3s ease;
         }
         
         .nav-card:hover { 
             transform: translateY(-10px); 
-            background-color: rgba(255, 255, 255, 0.8); /* 悬浮时降低透明度增加交互感 */
+            background-color: rgba(255, 255, 255, 0.8); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
         }
         
@@ -199,21 +192,21 @@
 
         <div class="grid-col">
             <div class="capsule-group">
-                <div class="stat-capsule empty">专项数据规划中</div>
-                <div class="stat-capsule empty">专项数据规划中</div>
+                <div class="stat-capsule">已收录：<span id="total-math">-</span> 题</div>
+                <div class="stat-capsule">已做完：<span id="done-math">-</span> 题</div>
             </div>
-            <a href="#" class="nav-card card-center">
+            <a href="math.html" class="nav-card card-center">
                 数学题目训练
-                <span class="sub-text">针对性刷题单(建设中)</span>
+                <span class="sub-text">专项分类 / 针对性刷题单</span>
             </a>
         </div>
 
         <div class="grid-col">
             <div class="capsule-group">
-                <div class="stat-capsule empty">题解统计规划中</div>
-                <div class="stat-capsule empty">题解统计规划中</div>
+                <div class="stat-capsule">已收录：<span id="total-videos">-</span> 部</div>
+                <div class="stat-capsule">关注RavenMan谢谢喵</div>
             </div>
-            <a href="#" class="nav-card card-right">
+            <a href="solutions.html" class="nav-card card-right">
                 个人题解收录
                 <span class="sub-text">思路复盘 / 知识沉淀</span>
             </a>
@@ -231,10 +224,10 @@
                         const formattedDate = `${dateObj.getFullYear()}年${dateObj.getMonth() + 1}月${dateObj.getDate()}日`;
                         document.getElementById('last-update-time').innerText = formattedDate;
                     } else {
-                        document.getElementById('last-update-time').innerText = "暂无提交记录";
+                        document.getElementById('last-update-time').innerText = "暂无记录";
                     }
                 } else {
-                    document.getElementById('last-update-time').innerText = "API 限制/暂无";
+                    document.getElementById('last-update-time').innerText = "暂无获取";
                 }
             } catch (error) {
                 console.error("无法获取更新时间:", error);
@@ -242,6 +235,7 @@
             }
         }
 
+        // 统计第一板块的比赛进度
         async function fetchContestStats() {
             try {
                 const response = await fetch('recent_xcpc_contests.json');
@@ -251,6 +245,7 @@
                 }
             } catch (error) {
                 console.error("无法读取本地比赛数据:", error);
+                document.getElementById('total-contests').innerText = "0";
             }
 
             try {
@@ -259,11 +254,50 @@
                 document.getElementById('done-contests').innerText = doneCount;
             } catch (error) {
                 console.error("无法读取本地存储记录:", error);
+                document.getElementById('done-contests').innerText = "0";
             }
         }
 
+        // 核心更改：新增逻辑，统计第二板块的数学题进度
+        async function fetchMathStats() {
+            try {
+                const response = await fetch('math_problems.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('total-math').innerText = data.length;
+                }
+            } catch (error) {
+                console.error("无法读取本地数学题数据:", error);
+                document.getElementById('total-math').innerText = "0";
+            }
+
+            try {
+                // 读取 math_done_records，也就是我们在 math.html 中定义的 localStorage 键名
+                const doneMap = JSON.parse(localStorage.getItem('math_done_records')) || {};
+                const doneCount = Object.values(doneMap).filter(val => val === true).length;
+                document.getElementById('done-math').innerText = doneCount;
+            } catch (error) {
+                console.error("无法读取本地数学题存储记录:", error);
+                document.getElementById('done-math').innerText = "0";
+            }
+        }
+        async function fetchVideoStats() {
+            try {
+                const response = await fetch('video_solutions.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('total-videos').innerText = data.length;
+                }
+            } catch (error) {
+                console.error("无法读取视频题解数据:", error);
+                document.getElementById('total-videos').innerText = "0";
+            }
+        }
+        // 初始化加载
         fetchLastUpdate();
         fetchContestStats();
+        fetchMathStats();
+        fetchVideoStats();
     </script>
 </body>
 </html>
