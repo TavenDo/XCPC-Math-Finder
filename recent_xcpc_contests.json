@@ -6630,5 +6630,13 @@
         "url": "https://qoj.ac/contest/497",
         "timestamp": 1577836800,
         "duration": -1
+    },
+    {
+        "id": "CF_106589",
+        "platform": "Codeforces",
+        "name": "2026CCPC重庆市赛",
+        "url": "https://codeforces.com/gym/106589",
+        "timestamp": 1781308800,
+        "duration": 18000
     }
 ]
