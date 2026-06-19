@@ -20,5 +20,16 @@
         "subcategory": "合法方案/全部方案",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Codeforces_106589_I",
+        "platform": "Codeforces",
+        "contest_name": "2026CCPC重庆市赛",
+        "contest_url": "https://codeforces.com/gym/106589",
+        "problem_id": "I",
+        "category": "概率与期望",
+        "subcategory": "拆贡献",
+        "difficulty": "Hard",
+        "status": false
     }
 ]
