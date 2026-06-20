@@ -1,0 +1,23 @@
+[
+    {
+        "name": "个人题解",
+        "subtitle": "B站 视频收录",
+        "url": "solutions.html",
+        "icon": "fa-brands fa-bilibili",
+        "priority": 3
+    },
+    {
+        "name": "刷题统计",
+        "subtitle": "可视化数据大屏",
+        "url": "#",
+        "icon": "fa-solid fa-chart-pie",
+        "priority": 2
+    },
+    {
+        "name": "更新记录",
+        "subtitle": "版本迭代与日志",
+        "url": "history.html",
+        "icon": "fa-solid fa-clock-rotate-left",
+        "priority": 1
+    }
+]

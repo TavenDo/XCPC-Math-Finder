@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小工具百宝箱 - XCPC-Math-Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6; 
+            color: #333; 
+            scroll-behavior: smooth; 
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('BG.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: brightness(0.75); 
+            z-index: -1; 
+        }
+        
+        header {
+            width: 100%;
+            background-color: #f39c12; 
+            color: white; 
+            padding: 10px 40px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left { display: flex; align-items: baseline; gap: 15px; }
+        .header-left h1 { margin: 0; font-size: 1.8em; letter-spacing: 1px; }
+        .header-left .author { font-size: 1em; opacity: 0.9; }
+        
+        .header-right-nav { display: flex; align-items: center; }
+        .back-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        .container { 
+            max-width: 1000px; 
+            width: 100%; 
+            margin: 100px auto 0 auto; 
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
+
+        .section-title { 
+            color: #fff; 
+            font-size: 2em; 
+            margin-bottom: 20px; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title i { color: #f39c12; }
+        .section-divider { border: 0; height: 3px; background: linear-gradient(to right, #f39c12, transparent); margin-bottom: 40px; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            justify-items: center; 
+            padding-bottom: 80px;
+        }
+
+        .tool-circle {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%; 
+            background-color: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .tool-circle:not(.disabled):hover {
+            transform: translateY(-12px);
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+        }
+
+        .tool-circle.disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .tool-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-circle:not(.disabled):hover .tool-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .tool-name {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .tool-desc {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #95a5a6;
+            color: white;
+            font-size: 0.7em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+        .empty-state {
+            grid-column: span 3;
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            padding: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 15px; }
+            .header-left h1 { font-size: 1.2em; }
+            .header-left .author { display: none; }
+            .header-right-nav { font-size: 1.2em; gap: 15px; }
+            .back-btn { padding: 6px 12px; font-size: 0.8em; }
+            .container { margin-top: 80px; }
+            .tools-grid { grid-template-columns: 1fr; gap: 30px; }
+            .tool-circle { width: 200px; height: 200px; }
+            .tool-icon { font-size: 3em; }
+            .tool-name { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <h1>XCPC-Math-Finder</h1>
+            <span class="author">🛠️ 个人小工具</span>
+        </div>
+        <div class="header-right-nav">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-house"></i> 返回主页</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-toolbox"></i> 百宝箱组件</h2>
+        <hr class="section-divider">
+
+        <div class="tools-grid" id="tools-container">
+            <div class="empty-state">小工具数据加载中...</div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('tools-container');
+
+        // 根据图标决定图标专属色，保持视觉精致度
+        function getIconColor(iconClass) {
+            if (iconClass.includes('bilibili')) return '#3498db';
+            if (iconClass.includes('pie') || iconClass.includes('chart')) return '#2ecc71';
+            if (iconClass.includes('clock') || iconClass.includes('rotate')) return '#9b59b6';
+            return '#e67e22'; // 默认橙黄色
+        }
+
+        async function loadTools() {
+            try {
+                const response = await fetch('tools_data.json');
+                if (!response.ok) throw new Error("无法读取配置文件");
+                
+                const data = await response.json();
+                
+                if (data.length === 0) {
+                    container.innerHTML = '<div class="empty-state">暂无收录的小工具</div>';
+                    return;
+                }
+
+                // 核心排序：按 priority 降序排（权重高的在前面）
+                const sortedData = [...data].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+                container.innerHTML = sortedData.map(tool => {
+                    const isDisabled = tool.url === '#';
+                    const badgeHTML = isDisabled ? '<div class="status-badge">施工中</div>' : '';
+                    const disabledClass = isDisabled ? 'disabled' : '';
+                    const iconColor = isDisabled ? '#95a5a6' : getIconColor(tool.icon);
+                    const hrefHTML = isDisabled ? 'href="#" onclick="event.preventDefault()"' : `href="${tool.url}"`;
+
+                    return `
+                        <a ${hrefHTML} class="tool-circle ${disabledClass}">
+                            ${badgeHTML}
+                            <i class="${tool.icon} tool-icon" style="color: ${iconColor};"></i>
+                            <div class="tool-name">${tool.name}</div>
+                            <div class="tool-desc">${tool.subtitle}</div>
+                        </a>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error("加载工具列表失败:", error);
+                container.innerHTML = '<div class="empty-state" style="color: #e74c3c;">⚠️ 无法读取小工具配置数据，请确保本地服务器环境正常运行。</div>';
+            }
+        }
+
+        // 启动加载
+        loadTools();
+    </script>
+</body>
+</html>

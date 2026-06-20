@@ -286,12 +286,12 @@
 
         <div class="grid-col">
             <div class="capsule-group">
-                <div class="stat-capsule">已收录：<span id="total-videos">-</span> 部</div>
-                <div class="stat-capsule">关注RavenMan谢谢喵</div>
+                <div class="stat-capsule">已有：<span id="total-tools">-</span> 项</div>
+                <div class="stat-capsule" id="latest-tool">最新：加载中...</div>
             </div>
-            <a href="solutions.html" class="nav-card card-right">
-                个人题解收录
-                <span class="sub-text">思路复盘 / 知识沉淀</span>
+            <a href="tools.html" class="nav-card card-right">
+                个人小工具收录
+                <span class="sub-text">百宝箱 / 效率组件</span>
             </a>
         </div>
     </div>
@@ -364,23 +364,33 @@
                 document.getElementById('done-math').innerText = "0";
             }
         }
-        async function fetchVideoStats() {
+        async function fetchToolsStats() {
             try {
-                const response = await fetch('video_solutions.json');
+                const response = await fetch('tools_data.json');
                 if (response.ok) {
                     const data = await response.json();
-                    document.getElementById('total-videos').innerText = data.length;
+                    // 1. 渲染已有项总数
+                    document.getElementById('total-tools').innerText = data.length;
+                    
+                    if (data.length > 0) {
+                        // 2. 按 priority 降序排列，最高者即为最新/最重要的小工具
+                        const sortedTools = [...data].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+                        document.getElementById('latest-tool').innerText = `最新：${sortedTools[0].name}`;
+                    } else {
+                        document.getElementById('latest-tool').innerText = "最新：暂无工具";
+                    }
                 }
             } catch (error) {
-                console.error("无法读取视频题解数据:", error);
-                document.getElementById('total-videos').innerText = "0";
+                console.error("无法读取小工具配置数据:", error);
+                document.getElementById('total-tools').innerText = "0";
+                document.getElementById('latest-tool').innerText = "最新：获取失败";
             }
         }
         // 初始化加载
         fetchLastUpdate();
         fetchContestStats();
         fetchMathStats();
-        fetchVideoStats();
+        fetchToolsStats();
     </script>
 </body>
 </html>
