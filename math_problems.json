@@ -53,5 +53,38 @@
         "subcategory": "枚举因子",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "QOJ_3758_C",
+        "platform": "QOJ",
+        "contest_name": "2026ICPC南昌",
+        "contest_url": "https://qoj.ac/contest/3758",
+        "problem_id": "C",
+        "category": "线性代数",
+        "subcategory": "邻接矩阵",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "QOJ_3758_K",
+        "platform": "QOJ",
+        "contest_name": "2026ICPC南昌",
+        "contest_url": "https://qoj.ac/contest/3758",
+        "problem_id": "K",
+        "category": "线性代数",
+        "subcategory": "矩阵快速幂",
+        "difficulty": "Hard",
+        "status": false
+    },
+    {
+        "id": "QOJ_3758_L",
+        "platform": "QOJ",
+        "contest_name": "2026ICPC南昌",
+        "contest_url": "https://qoj.ac/contest/3758",
+        "problem_id": "L",
+        "category": "纯数论",
+        "subcategory": "欧拉函数",
+        "difficulty": "Hard",
+        "status": false
     }
 ]
