@@ -16,7 +16,6 @@
             position: relative;
         }
 
-        /* 自适应、居中、降低亮度的全屏背景图 */
         body::before {
             content: "";
             position: fixed;
@@ -32,7 +31,6 @@
             z-index: -1; 
         }
         
-        /* 规范顶端栏 */
         header {
             width: 100%;
             background-color: #f39c12; 
@@ -72,7 +70,6 @@
             transform: scale(1.05);
         }
 
-        /* 顶部工具栏 (搜索框定位) */
         .toolbar {
             max-width: 1100px;
             width: 100%;
@@ -115,7 +112,6 @@
         }
         .search-box input::placeholder { color: #95a5a6; }
 
-        /* 右侧胶囊导航 */
         .floating-nav { 
             position: fixed; 
             bottom: 40px; 
@@ -144,7 +140,6 @@
             transform: translateX(-5px); 
         }
 
-        /* 主体容器 */
         .container { 
             max-width: 1100px; 
             width: 100%; 
@@ -153,7 +148,6 @@
             box-sizing: border-box; 
         }
 
-        /* 大板块标题 */
         .category-section { margin-bottom: 50px; }
         .category-title { 
             color: #fff; 
@@ -169,7 +163,6 @@
         .category-title i { color: #f39c12; }
         .section-divider { border: 0; height: 3px; background: linear-gradient(to right, #f39c12, transparent); margin-bottom: 25px; }
 
-        /* 表格与毛玻璃设计 */
         table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -186,7 +179,6 @@
         td { color: #2c3e50; font-weight: 500; font-size: 0.95em; transition: opacity 0.3s; }
         tr:hover td { background-color: rgba(255, 255, 255, 0.5); }
         
-        /* 细分小类分组头 */
         .subcat-header {
             background-color: rgba(236, 240, 241, 0.85) !important;
             color: #2980b9 !important;
@@ -195,12 +187,10 @@
             text-align: center;
         }
 
-        /* 徽章与标签 */
         .badge { padding: 4px 10px; border-radius: 6px; font-size: 0.85em; font-weight: bold; color: white; display: inline-block; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .badge-cf { background-color: #2980b9; } 
         .badge-qoj { background-color: #e67e22; } 
         
-        /* 难度标签 */
         .diff-easy { background-color: #27ae60; }
         .diff-medium { background-color: #f39c12; }
         .diff-hard { background-color: #c0392b; }
@@ -210,93 +200,25 @@
         
         input[type="checkbox"] { transform: scale(1.4); cursor: pointer; }
 
-        /* 已做题目的视觉置灰效果 */
         tr.done-row td { opacity: 0.5; }
-        tr.done-row td:first-child { opacity: 1; /* 保持 checkbox 清晰可见 */ }
+        tr.done-row td:first-child { opacity: 1; }
 
-        /* 空状态提示 */
         .empty-state { text-align: center; padding: 30px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-weight: bold; font-size: 1.1em; background: rgba(0,0,0,0.2); border-radius: 10px; }
+
+        /* 移动端自适应 */
         @media (max-width: 768px) {
-            /* 1. 顶端导航栏：压缩边距，缩小字号 */
-            header {
-                padding: 10px 15px;
-            }
-            .header-left h1 {
-                font-size: 1.2em;
-            }
-            .header-left .author {
-                display: none; /* 手机端空间有限，隐藏副标题/作者，保持头部干净 */
-            }
-            .header-right {
-                font-size: 1.2em;
-                gap: 15px;
-            }
-            .back-btn {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
-
-            /* 2. 主页/公共头部布局：转为纵向排列 */
-            .sub-header {
-                margin-top: 70px;
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            .sub-header h2 {
-                font-size: 1.5em;
-            }
-
-            /* 3. 主页卡片网格：降维至单列 */
-            .main-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .nav-card {
-                width: 100%;
-                height: 160px; /* 稍微压低卡片高度 */
-                font-size: 1.3em;
-            }
-            .capsule-group {
-                height: auto;
-                flex-direction: row; /* 数据气泡改为横向并排 */
-                justify-content: center;
-                gap: 10px;
-                margin-bottom: -10px;
-            }
-
-            /* 4. 搜索框工具栏：占满屏幕宽度 */
-            .search-box {
-                width: 100%;
-            }
-
-            /* 5. 数据表格降级方案：启用内部横向滚动 */
-            .container {
-                padding-left: 10px;
-                padding-right: 10px;
-                margin-top: 70px; /* 防止被顶栏遮挡 */
-            }
-            /* 将表格外层容器(如果需要)或表格本身设为块级并允许横向滚动 */
-            table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap; /* 强制内容不换行，保障表格结构 */
-                -webkit-overflow-scrolling: touch; /* 提升 iOS 上的滚动顺滑度 */
-            }
-            th, td {
-                padding: 12px 10px;
-            }
-
-            /* 6. 右下角悬浮按钮：缩小并靠边，防止挡住底层表格内容 */
-            .floating-nav {
-                bottom: 20px;
-                right: 15px;
-                gap: 10px;
-            }
-            .btn-jump {
-                padding: 8px 16px;
-                font-size: 0.85em;
-            }
+            header { padding: 10px 15px; }
+            .header-left h1 { font-size: 1.2em; }
+            .header-left .author { display: none; }
+            .header-right-nav { font-size: 1.2em; gap: 15px; }
+            .back-btn { padding: 6px 12px; font-size: 0.8em; }
+            .toolbar { margin-top: 70px; padding: 0 10px; }
+            .search-box { width: 100%; }
+            .container { padding-left: 10px; padding-right: 10px; }
+            table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+            th, td { padding: 12px 10px; }
+            .floating-nav { bottom: 20px; right: 15px; gap: 10px; }
+            .btn-jump { padding: 8px 16px; font-size: 0.85em; }
         }
     </style>
 </head>
@@ -331,15 +253,40 @@
         
         let globalMathData = [];
         let doneMap = JSON.parse(localStorage.getItem('math_done_records')) || {};
+        
+        // 新增状态：默认隐藏细分小类
+        let hideSubtags = true; 
 
         const navContainer = document.getElementById('nav-container');
         const mainContainer = document.getElementById('main-container');
 
-        // 初始化导航锚点
+        // 初始化导航锚点与控制开关
         function initNav() {
-            navContainer.innerHTML = CATEGORIES.map((cat, index) => 
+            let html = CATEGORIES.map((cat, index) => 
                 `<a href="#cat-${index}" class="btn-jump"><i class="fa-solid fa-tag"></i> ${cat}</a>`
             ).join('');
+            
+            // 挂载显示/隐藏切换按钮 (初始状态根据hideSubtags设定)
+            const icon = hideSubtags ? "fa-eye-slash" : "fa-eye";
+            const text = hideSubtags ? "显示细分Tag" : "隐藏细分Tag";
+            html += `<a href="#" class="btn-jump" style="background-color: rgba(149, 165, 166, 0.9);" onclick="toggleSubtags(event)" id="btn-toggle-sub"><i class="fa-solid ${icon}"></i> ${text}</a>`;
+            
+            navContainer.innerHTML = html;
+        }
+
+        // 切换函数
+        function toggleSubtags(e) {
+            e.preventDefault();
+            hideSubtags = !hideSubtags;
+            
+            const btn = document.getElementById('btn-toggle-sub');
+            if (hideSubtags) {
+                btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> 显示细分Tag';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i> 隐藏细分Tag';
+            }
+            // 保持搜索词的情况下重新渲染
+            handleSearch();
         }
 
         function getPlatformBadge(platform) {
@@ -387,13 +334,11 @@
                 section.className = 'category-section';
                 section.id = `cat-${index}`;
                 
-                // 标题
                 section.innerHTML = `
                     <h2 class="category-title"><i class="fa-solid fa-cube"></i> ${cat}</h2>
                     <hr class="section-divider">
                 `;
 
-                // 提取该大类下的数据
                 const catData = filteredData.filter(item => item.category === cat);
 
                 if (catData.length === 0) {
@@ -402,13 +347,17 @@
                     return;
                 }
 
-                // 3. 按小类 (subcategory) 聚合分组
-                const subcatMap = {};
-                catData.forEach(item => {
-                    const sub = item.subcategory || '其他';
-                    if (!subcatMap[sub]) subcatMap[sub] = [];
-                    subcatMap[sub].push(item);
-                });
+                // 3. 构建聚合逻辑：如果 hideSubtags 为真，则不按小类拆分
+                const renderGroups = {};
+                if (hideSubtags) {
+                    renderGroups['ALL'] = catData;
+                } else {
+                    catData.forEach(item => {
+                        const sub = item.subcategory || '其他';
+                        if (!renderGroups[sub]) renderGroups[sub] = [];
+                        renderGroups[sub].push(item);
+                    });
+                }
 
                 // 4. 构建表格
                 const table = document.createElement('table');
@@ -425,20 +374,22 @@
                     <tbody>
                 `;
 
-                // 遍历每个小类
-                for (const [subcat, problems] of Object.entries(subcatMap)) {
-                    // 小类标题行
-                    tbodyHTML += `<tr><td colspan="5" class="subcat-header">🏷️ ${subcat}</td></tr>`;
+                // 遍历渲染组
+                for (const [subcat, problems] of Object.entries(renderGroups)) {
+                    // 如果处于显示细分状态，渲染组头
+                    if (!hideSubtags) {
+                        tbodyHTML += `<tr><td colspan="5" class="subcat-header">🏷️ ${subcat}</td></tr>`;
+                    }
 
-                    // 排序核心逻辑：未做在前(0)，已做沉底(1)。同状态下按照 Easy->Medium->Hard 排序
+                    // 排序核心逻辑依然生效：未做在前(0)，已做沉底(1)。同状态按照 Easy->Medium->Hard 排序
                     problems.sort((a, b) => {
                         const doneA = doneMap[a.id] ? 1 : 0;
                         const doneB = doneMap[b.id] ? 1 : 0;
-                        if (doneA !== doneB) return doneA - doneB; // 状态不同，未做在前
+                        if (doneA !== doneB) return doneA - doneB; 
                         
                         const weightA = DIFF_WEIGHT[a.difficulty] || 0;
                         const weightB = DIFF_WEIGHT[b.difficulty] || 0;
-                        return weightA - weightB; // 难度升序
+                        return weightA - weightB; 
                     });
 
                     // 生成题目行
@@ -468,7 +419,6 @@
             });
         }
 
-        // 入口
         initNav();
         fetch('math_problems.json')
             .then(res => res.json())
