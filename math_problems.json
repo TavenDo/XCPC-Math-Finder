@@ -42,5 +42,16 @@
         "subcategory": "拆贡献",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "QOJ_3588_K",
+        "platform": "QOJ",
+        "contest_name": "2026ICPC南昌",
+        "contest_url": "https://qoj.ac/contest/3588",
+        "problem_id": "K",
+        "category": "纯数论",
+        "subcategory": "枚举因子",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
