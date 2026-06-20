@@ -31,5 +31,16 @@
         "subcategory": "拆贡献",
         "difficulty": "Hard",
         "status": false
+    },
+    {
+        "id": "QOJ_3588_L",
+        "platform": "QOJ",
+        "contest_name": "2026ICPC深圳",
+        "contest_url": "https://qoj.ac/contest/3588",
+        "problem_id": "L",
+        "category": "概率与期望",
+        "subcategory": "拆贡献",
+        "difficulty": "Easy",
+        "status": false
     }
 ]

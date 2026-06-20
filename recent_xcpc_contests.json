@@ -6638,5 +6638,13 @@
         "url": "https://codeforces.com/gym/106589",
         "timestamp": 1781308800,
         "duration": 18000
+    },
+    {
+        "id": "QOJ_3758",
+        "platform": "QOJ",
+        "name": "2026ICPC南昌",
+        "url": "https://qoj.ac/contest/3758",
+        "timestamp": 1781913600,
+        "duration": 18000
     }
 ]
