@@ -46,7 +46,7 @@
     {
         "id": "QOJ_3588_K",
         "platform": "QOJ",
-        "contest_name": "2026ICPC南昌",
+        "contest_name": "2026CCPC南昌",
         "contest_url": "https://qoj.ac/contest/3588",
         "problem_id": "K",
         "category": "纯数论",
@@ -85,6 +85,17 @@
         "category": "纯数论",
         "subcategory": "欧拉函数",
         "difficulty": "Hard",
+        "status": false
+    },
+    {
+        "id": "Codeforces_106570_F",
+        "platform": "Codeforces",
+        "contest_name": "2026ICPC四川",
+        "contest_url": "https://codeforces.com/gym/106570",
+        "problem_id": "F",
+        "category": "纯数论",
+        "subcategory": "鸽巢原理",
+        "difficulty": "Medium",
         "status": false
     }
 ]
