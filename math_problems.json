@@ -97,5 +97,16 @@
         "subcategory": "鸽巢原理",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Codeforces_106534_K",
+        "platform": "Codeforces",
+        "contest_name": "2026CCPC黑龙江",
+        "contest_url": "https://codeforces.com/gym/106534",
+        "problem_id": "K",
+        "category": "计数问题",
+        "subcategory": "生成函数",
+        "difficulty": "Hard",
+        "status": false
     }
 ]
