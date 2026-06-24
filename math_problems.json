@@ -46,7 +46,7 @@
     {
         "id": "QOJ_3588_K",
         "platform": "QOJ",
-        "contest_name": "2026CCPC南昌",
+        "contest_name": "2026ICPC深圳",
         "contest_url": "https://qoj.ac/contest/3588",
         "problem_id": "K",
         "category": "纯数论",
@@ -106,6 +106,17 @@
         "problem_id": "K",
         "category": "计数问题",
         "subcategory": "生成函数",
+        "difficulty": "Hard",
+        "status": false
+    },
+    {
+        "id": "Codeforces_106252_A",
+        "platform": "Codeforces",
+        "contest_name": "2025ICPC武汉",
+        "contest_url": "https://codeforces.com/gym/106252",
+        "problem_id": "A",
+        "category": "计数问题",
+        "subcategory": "二分答案",
         "difficulty": "Hard",
         "status": false
     }
