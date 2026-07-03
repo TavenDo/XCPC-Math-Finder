@@ -141,5 +141,49 @@
         "subcategory": "GCD",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2125_D",
+        "platform": "Codeforces",
+        "contest_name": "CFe181",
+        "contest_url": "https://codeforces.com/contest/2125",
+        "problem_id": "D",
+        "category": "概率与期望",
+        "subcategory": "概率DP",
+        "difficulty": "Easy",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2241_G",
+        "platform": "Codeforces",
+        "contest_name": "CF1107",
+        "contest_url": "https://codeforces.com/contest/2241",
+        "problem_id": "G",
+        "category": "纯数论",
+        "subcategory": "GCD",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2238_F",
+        "platform": "Codeforces",
+        "contest_name": "CF1106",
+        "contest_url": "https://codeforces.com/contest/2238",
+        "problem_id": "F",
+        "category": "计数问题",
+        "subcategory": "卡特兰数",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2200_G",
+        "platform": "Codeforces",
+        "contest_name": "CF1084",
+        "contest_url": "https://codeforces.com/contest/2200",
+        "problem_id": "G",
+        "category": "概率与期望",
+        "subcategory": "拆贡献",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
