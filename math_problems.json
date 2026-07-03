@@ -185,5 +185,16 @@
         "subcategory": "拆贡献",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_problem_C",
+        "platform": "Codeforces",
+        "contest_name": "CF1012",
+        "contest_url": "https://codeforces.com/contest/2089/problem",
+        "problem_id": "C",
+        "category": "概率与期望",
+        "subcategory": "期望DP",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
