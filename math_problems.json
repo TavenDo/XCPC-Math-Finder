@@ -187,10 +187,10 @@
         "status": false
     },
     {
-        "id": "Codeforces_problem_C",
+        "id": "Codeforces_2089_C",
         "platform": "Codeforces",
         "contest_name": "CF1012",
-        "contest_url": "https://codeforces.com/contest/2089/problem",
+        "contest_url": "https://codeforces.com/contest/2089",
         "problem_id": "C",
         "category": "概率与期望",
         "subcategory": "期望DP",
