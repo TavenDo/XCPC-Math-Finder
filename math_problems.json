@@ -196,5 +196,38 @@
         "subcategory": "期望DP",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Codeforces_2233_E",
+        "platform": "Codeforces",
+        "contest_name": "CFe191",
+        "contest_url": "https://codeforces.com/contest/2233",
+        "problem_id": "E",
+        "category": "计数问题",
+        "subcategory": "组合数学",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2234_E",
+        "platform": "Codeforces",
+        "contest_name": "CF1102",
+        "contest_url": "https://codeforces.com/contest/2234",
+        "problem_id": "E",
+        "category": "计数问题",
+        "subcategory": "笛卡尔树",
+        "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2236_F",
+        "platform": "Codeforces",
+        "contest_name": "CF1103",
+        "contest_url": "https://codeforces.com/contest/2236",
+        "problem_id": "F",
+        "category": "计数问题",
+        "subcategory": "背包",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
