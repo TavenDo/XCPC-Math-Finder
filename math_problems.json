@@ -234,11 +234,22 @@
         "id": "Codeforces_problem_F",
         "platform": "Codeforces",
         "contest_name": "CFe188",
-        "contest_url": "https://codeforces.com/contest/2204/problem",
+        "contest_url": "https://codeforces.com/contest/2204",
         "problem_id": "F",
         "category": "计数问题",
         "subcategory": "拆贡献",
         "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_106628_L",
+        "platform": "Codeforces",
+        "contest_name": "Game of Coders 5.0 | Finals",
+        "contest_url": "https://codeforces.com/gym/106628",
+        "problem_id": "L",
+        "category": "纯数论",
+        "subcategory": "拉格朗日插值",
+        "difficulty": "Hard",
         "status": false
     }
 ]
