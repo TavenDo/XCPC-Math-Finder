@@ -6646,5 +6646,21 @@
         "url": "https://qoj.ac/contest/3758",
         "timestamp": 1781913600,
         "duration": 18000
+    },
+    {
+        "id": "QOJ_4071",
+        "platform": "QOJ",
+        "name": "2026ICPC-Online1",
+        "url": "https://qoj.ac/contest/4071",
+        "timestamp": 1788652800,
+        "duration": 18000
+    },
+    {
+        "id": "QOJ_4113",
+        "platform": "QOJ",
+        "name": "2026ICPC-Online2",
+        "url": "https://qoj.ac/contest/4113",
+        "timestamp": 1789257600,
+        "duration": 18000
     }
 ]
