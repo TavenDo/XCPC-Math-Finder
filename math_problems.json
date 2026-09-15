@@ -251,5 +251,16 @@
         "subcategory": "拉格朗日插值",
         "difficulty": "Hard",
         "status": false
+    },
+    {
+        "id": "Codeforces_2256_D",
+        "platform": "Codeforces",
+        "contest_name": "CF1116",
+        "contest_url": "https://codeforces.com/contest/2256",
+        "problem_id": "D",
+        "category": "计数问题",
+        "subcategory": "组合数学",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
