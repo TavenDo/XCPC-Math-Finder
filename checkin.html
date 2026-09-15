@@ -205,8 +205,9 @@
             text-align: center; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         }
-        .badge-cf { background-color: #2980b9; } 
+        .badge-cf { background-color: #ebab0ac1; } 
         .badge-qoj { background-color: #e67e22; } 
+        .badge-luogu { background-color: #0e90d2; }
         .diff-easy { background-color: #27ae60; }
         .diff-medium { background-color: #f39c12; }
         .diff-hard { background-color: #c0392b; }
@@ -460,6 +461,7 @@
         function getPlatformBadge(platform) {
             if (platform === 'Codeforces') return '<span class="badge badge-cf">Codeforces</span>';
             if (platform === 'QOJ') return '<span class="badge badge-qoj">QOJ</span>';
+            if (platform === 'Luogu') return '<span class="badge badge-luogu">Luogu</span>';
             return `<span class="badge" style="background:#7f8c8d;">${platform || 'Unknown'}</span>`;
         }
 

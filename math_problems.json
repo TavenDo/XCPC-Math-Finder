@@ -262,5 +262,16 @@
         "subcategory": "组合数学",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Luogu_P4861_P4861",
+        "platform": "Luogu",
+        "contest_name": "Luogu",
+        "contest_url": "https://www.luogu.com.cn/problem/P4861",
+        "problem_id": "P4861",
+        "category": "纯数论",
+        "subcategory": "原根与阶",
+        "difficulty": "Easy",
+        "status": false
     }
 ]

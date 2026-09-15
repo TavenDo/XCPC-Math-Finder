@@ -11,8 +11,7 @@ FILE_PATH = os.path.join(BASE_DIR, "math_problems.json")
 # 更新：只保留四个大方向，去掉博弈论
 CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望"]
 DIFFICULTIES = ["Easy", "Medium", "Hard"]
-# 更新：只保留 Codeforces 和 QOJ
-PLATFORMS = ["Codeforces", "QOJ"]
+PLATFORMS = ["Codeforces", "QOJ","Luogu"]
 
 def load_data():
     if not os.path.exists(FILE_PATH):
