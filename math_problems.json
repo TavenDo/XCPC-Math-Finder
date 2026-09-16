@@ -273,5 +273,16 @@
         "subcategory": "原根与阶",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2229_E",
+        "platform": "Codeforces",
+        "contest_name": "CF1100",
+        "contest_url": "https://codeforces.com/contest/2229",
+        "problem_id": "E",
+        "category": "计数问题",
+        "subcategory": "DP",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
