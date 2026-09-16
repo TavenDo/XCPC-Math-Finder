@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23f39c12'/><text x='16' y='23' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='19' text-anchor='middle'>∑</text></svg>">
     <title>每日打卡 - XCPC-Math-Finder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23f39c12'/><text x='16' y='23' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='19' text-anchor='middle'>∑</text></svg>">
+    <script src="badge_config.js"></script>
     <style>
         body { 
             margin: 0; 
@@ -206,12 +207,6 @@
             text-align: center; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         }
-        .badge-cf { background-color: #ebab0ac1; } 
-        .badge-qoj { background-color: #e67e22; } 
-        .badge-luogu { background-color: #0e90d2; }
-        .diff-easy { background-color: #27ae60; }
-        .diff-medium { background-color: #f39c12; }
-        .diff-hard { background-color: #c0392b; }
 
         a.link-btn { 
             color: #2980b9; 
@@ -358,16 +353,6 @@
             color: #2c3e50;
         }
 
-        .empty-state {
-            text-align: center;
-            color: white;
-            font-size: 1.1em;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            padding: 40px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-        }
-
         @media (max-width: 768px) {
             header { padding: 10px 15px; }
             .header-left h1 { font-size: 1.2em; }
@@ -459,20 +444,6 @@
         let globalMathData = [];
         let globalCheckinData = [];
 
-        function getPlatformBadge(platform) {
-            if (platform === 'Codeforces') return '<span class="badge badge-cf">Codeforces</span>';
-            if (platform === 'QOJ') return '<span class="badge badge-qoj">QOJ</span>';
-            if (platform === 'Luogu') return '<span class="badge badge-luogu">Luogu</span>';
-            return `<span class="badge" style="background:#7f8c8d;">${platform || 'Unknown'}</span>`;
-        }
-
-        function getDiffBadge(diff) {
-            let cls = 'diff-easy';
-            if (diff === 'Medium') cls = 'diff-medium';
-            if (diff === 'Hard') cls = 'diff-hard';
-            return `<span class="badge ${cls}">${diff || 'Medium'}</span>`;
-        }
-
         function getLocalDateString(d = new Date()) {
             const year = d.getFullYear();
             const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -496,7 +467,6 @@
             let checkDate = new Date();
 
             if (!checkedToday) {
-                // 如果今天没打卡，从昨天倒推
                 checkDate = yesterday;
             }
 
@@ -535,14 +505,16 @@
             }
 
             if (globalCheckinData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 25px;">暂无打卡记录，请在本地运行 AddCheckinGUI.py 开启你的首次打卡！</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 25px;">暂无打卡记录，请在本地运行 AddCheckinGUI.py 开启打卡。</td></tr>';
                 return;
             }
 
-            // 构建 ID -> 数学题对象的映射哈希表
+            // 构建 ID -> 数学题对象的映射哈希表（去除首尾空格提高容错率）
             const mathMap = {};
             globalMathData.forEach(item => {
-                mathMap[item.id] = item;
+                if (item && item.id) {
+                    mathMap[String(item.id).trim()] = item;
+                }
             });
 
             // 按日期降序展示历史打卡记录
@@ -551,7 +523,8 @@
             });
 
             tbody.innerHTML = sortedCheckins.map(record => {
-                const mathInfo = mathMap[record.id];
+                const targetId = String(record.id || '').trim();
+                const mathInfo = mathMap[targetId];
                 if (mathInfo) {
                     return `
                         <tr>
@@ -611,18 +584,26 @@
             linkBtn.style.display = 'inline-block';
         }
 
+        // 核心改造：使用时间戳与 no-store 彻底解决 GitHub Pages 与浏览器强缓存问题
+        const cacheBuster = Date.now();
         Promise.all([
-            fetch('math_problems.json').then(r => r.ok ? r.json() : []),
-            fetch('daily_checkin.json').then(r => r.ok ? r.json() : [])
+            fetch(`math_problems.json?_t=${cacheBuster}`, { cache: 'no-store' }).then(r => {
+                if (!r.ok) throw new Error(`HTTP ${r.status} 读取 math_problems.json 失败`);
+                return r.json();
+            }),
+            fetch(`daily_checkin.json?_t=${cacheBuster}`, { cache: 'no-store' }).then(r => {
+                if (!r.ok) throw new Error(`HTTP ${r.status} 读取 daily_checkin.json 失败`);
+                return r.json();
+            })
         ])
         .then(([mathData, checkinData]) => {
-            globalMathData = mathData;
-            globalCheckinData = checkinData;
+            globalMathData = Array.isArray(mathData) ? mathData : [];
+            globalCheckinData = Array.isArray(checkinData) ? checkinData : [];
             renderCheckinView();
         })
         .catch(err => {
             console.error("加载数据失败:", err);
-            document.getElementById('checkin-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#e74c3c;">加载数据失败，请确保使用本地服务器运行且相关 JSON 存在。</td></tr>';
+            document.getElementById('checkin-tbody').innerHTML = `<tr><td colspan="6" style="text-align:center; color:#e74c3c;">加载数据失败：${err.message}。请检查文件是否存在且 JSON 格式正确。</td></tr>`;
         });
     </script>
 </body>

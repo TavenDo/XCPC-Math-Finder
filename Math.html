@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23f39c12'/><text x='16' y='23' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='19' text-anchor='middle'>∑</text></svg>">
     <title>数学题单 - XCPC-Math-Finder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23f39c12'/><text x='16' y='23' fill='%23ffffff' font-family='sans-serif' font-weight='900' font-size='19' text-anchor='middle'>∑</text></svg>">
+    <script src="badge_config.js"></script>
     <style>
         body { 
             margin: 0; 
@@ -189,13 +189,6 @@
         }
 
         .badge { padding: 4px 10px; border-radius: 6px; font-size: 0.85em; font-weight: bold; color: white; display: inline-block; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .badge-cf { background-color: #ebab0ac1; } 
-        .badge-qoj { background-color: #e67e22; } 
-        .badge-luogu { background-color: #0e90d2; }
-        
-        .diff-easy { background-color: #27ae60; }
-        .diff-medium { background-color: #f39c12; }
-        .diff-hard { background-color: #c0392b; }
 
         a.link-btn { color: #2980b9; text-decoration: none; font-weight: bold; }
         a.link-btn:hover { text-decoration: underline; color: #1f618d; }
@@ -251,7 +244,6 @@
 
     <script>
         const CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望"];
-        const DIFF_WEIGHT = { "Easy": 1, "Medium": 2, "Hard": 3 };
         
         let globalMathData = [];
         let doneMap = JSON.parse(localStorage.getItem('math_done_records')) || {};
@@ -289,20 +281,6 @@
             }
             // 保持搜索词的情况下重新渲染
             handleSearch();
-        }
-
-        function getPlatformBadge(platform) {
-            if (platform === 'Codeforces') return '<span class="badge badge-cf">Codeforces</span>';
-            if (platform === 'QOJ') return '<span class="badge badge-qoj">QOJ</span>';
-            if (platform === 'Luogu') return '<span class="badge badge-luogu">Luogu</span>';
-            return `<span class="badge" style="background:#7f8c8d;">${platform}</span>`;
-        }
-
-        function getDiffBadge(diff) {
-            let cls = 'diff-easy';
-            if (diff === 'Medium') cls = 'diff-medium';
-            if (diff === 'Hard') cls = 'diff-hard';
-            return `<span class="badge ${cls}">${diff}</span>`;
         }
 
         function toggleMathDone(id, currentState) {
@@ -390,8 +368,8 @@
                         const doneB = doneMap[b.id] ? 1 : 0;
                         if (doneA !== doneB) return doneA - doneB; 
                         
-                        const weightA = DIFF_WEIGHT[a.difficulty] || 0;
-                        const weightB = DIFF_WEIGHT[b.difficulty] || 0;
+                        const weightA = getDiffWeight(a.difficulty);
+                        const weightB = getDiffWeight(b.difficulty);
                         return weightA - weightB; 
                     });
 

@@ -4,9 +4,9 @@
  */
 const BADGE_CONFIG = {
     platforms: {
-        "Codeforces": { bg: "#2980b9", text: "#ffffff" },
-        "QOJ":        { bg: "#e67e22", text: "#ffffff" },
-        "Luogu":      { bg: "#0e90d2", text: "#ffffff" },
+        "Codeforces": { bg: "#e67e22", text: "#ffffff" },
+        "QOJ":        { bg: "#363738", text: "#ffffff" },
+        "Luogu":      { bg: "#35bddc", text: "#ffffff" },
         "AtCoder":    { bg: "#222222", text: "#ffffff" },
         "Nowcoder":   { bg: "#9b59b6", text: "#ffffff" },
         "default":    { bg: "#7f8c8d", text: "#ffffff" }
@@ -15,7 +15,7 @@ const BADGE_CONFIG = {
         "Easy":       { bg: "#27ae60", text: "#ffffff", weight: 2 },
         "Medium":     { bg: "#f39c12", text: "#ffffff", weight: 3 },
         "Hard":       { bg: "#c0392b", text: "#ffffff", weight: 4 },
-        "Template":    { bg: "#8e44ad", text: "#ffffff", weight: 1 },
+        "Template":    { bg: "#222222", text: "#ffffff", weight: 1 },
         "default":    { bg: "#95a5a6", text: "#ffffff", weight: 99 }
     }
 };
