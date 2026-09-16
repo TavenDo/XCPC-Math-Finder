@@ -561,15 +561,17 @@
         }
 
         function drawRandomProblem() {
-            if (!globalMathData || globalMathData.length === 0) {
-                document.getElementById('random-title').innerText = "题库中暂无题目";
-                document.getElementById('random-tags').innerHTML = "";
-                document.getElementById('random-link').style.display = 'none';
-                return;
-            }
+            if (!globalMathData || globalMathData.length === 0) return;
+            
+            // 读取本地做题进度，优先筛选未做的数学题
+            const doneMap = JSON.parse(localStorage.getItem('math_done_records')) || {};
+            let candidates = globalMathData.filter(p => !doneMap[p.id]);
+            
+            // 如果全部做完了，则在总题库中随机
+            if (candidates.length === 0) candidates = globalMathData;
 
-            const randomIndex = Math.floor(Math.random() * globalMathData.length);
-            const p = globalMathData[randomIndex];
+            const randomIndex = Math.floor(Math.random() * candidates.length);
+            const p = candidates[randomIndex];
 
             document.getElementById('random-title').innerText = `${p.contest_name} - Problem ${p.problem_id}`;
             document.getElementById('random-tags').innerHTML = `

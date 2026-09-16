@@ -401,7 +401,7 @@
         }
 
         initNav();
-        fetch('math_problems.json')
+        fetch(`math_problems.json?_t=${Date.now()}`, { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
                 globalMathData = data;

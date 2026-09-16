@@ -343,7 +343,7 @@
             renderTables();
         }
 
-        fetch('recent_xcpc_contests.json')
+        fetch('recent_xcpc_contests.json?_t=${Date.now()}',{ cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
                 globalData = data;
