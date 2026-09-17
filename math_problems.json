@@ -284,5 +284,16 @@
         "subcategory": "DP",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "QOJ_2562_M",
+        "platform": "QOJ",
+        "contest_name": "2025ICPC西安",
+        "contest_url": "https://qoj.ac/contest/2562",
+        "problem_id": "M",
+        "category": "计数问题",
+        "subcategory": "DP",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
