@@ -328,5 +328,16 @@
         "subcategory": "DP",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2266_E",
+        "platform": "Codeforces",
+        "contest_name": "CF1102",
+        "contest_url": "https://codeforces.com/contest/2266",
+        "problem_id": "E",
+        "category": "纯数论",
+        "subcategory": "枚举因子",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
