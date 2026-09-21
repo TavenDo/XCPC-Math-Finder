@@ -308,11 +308,11 @@
         "status": false
     },
     {
-        "id": "Luogu_P2679_P1868",
+        "id": "Luogu_P2679_P2679",
         "platform": "Luogu",
-        "contest_name": "P1868",
+        "contest_name": "P2679",
         "contest_url": "https://www.luogu.com.cn/problem/P2679",
-        "problem_id": "P1868",
+        "problem_id": "P2679",
         "category": "计数问题",
         "subcategory": "DP",
         "difficulty": "Easy",
