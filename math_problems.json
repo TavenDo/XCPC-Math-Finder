@@ -339,5 +339,16 @@
         "subcategory": "枚举因子",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2266_G",
+        "platform": "Codeforces",
+        "contest_name": "CF1122",
+        "contest_url": "https://codeforces.com/contest/2266",
+        "problem_id": "G",
+        "category": "纯数论",
+        "subcategory": "GCD",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
