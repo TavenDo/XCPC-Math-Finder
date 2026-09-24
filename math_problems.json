@@ -350,5 +350,16 @@
         "subcategory": "GCD",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Luogu_P2568_P2568",
+        "platform": "Luogu",
+        "contest_name": "P2568",
+        "contest_url": "https://www.luogu.com.cn/problem/P2568",
+        "problem_id": "P2568",
+        "category": "纯数论",
+        "subcategory": "GCD",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
