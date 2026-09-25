@@ -361,5 +361,16 @@
         "subcategory": "GCD",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Luogu_P2398_P2398",
+        "platform": "Luogu",
+        "contest_name": "P2398",
+        "contest_url": "https://www.luogu.com.cn/problem/P2398",
+        "problem_id": "P2398",
+        "category": "纯数论",
+        "subcategory": "欧拉反演",
+        "difficulty": "Template",
+        "status": false
     }
 ]
