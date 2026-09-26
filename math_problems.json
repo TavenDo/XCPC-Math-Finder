@@ -372,5 +372,16 @@
         "subcategory": "欧拉反演",
         "difficulty": "Template",
         "status": false
+    },
+    {
+        "id": "Luogu_P4139_P4139",
+        "platform": "Luogu",
+        "contest_name": "P4139",
+        "contest_url": "https://www.luogu.com.cn/problem/P4139",
+        "problem_id": "P4139",
+        "category": "纯数论",
+        "subcategory": "拓展欧拉定理",
+        "difficulty": "Template",
+        "status": false
     }
 ]
