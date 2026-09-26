@@ -383,5 +383,16 @@
         "subcategory": "拓展欧拉定理",
         "difficulty": "Template",
         "status": false
+    },
+    {
+        "id": "Codeforces_2262_C",
+        "platform": "Codeforces",
+        "contest_name": "CF1120",
+        "contest_url": "https://codeforces.com/contest/2262",
+        "problem_id": "C",
+        "category": "计数问题",
+        "subcategory": "组合数学",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
