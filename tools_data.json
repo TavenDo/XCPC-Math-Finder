@@ -4,6 +4,13 @@
         "subtitle": "B站 视频收录",
         "url": "solutions.html",
         "icon": "fa-brands fa-bilibili",
+        "priority": 4
+    },
+    {
+        "name": "清除记录",
+        "subtitle": "重置所有做题状态",
+        "url": "action:clear_records",
+        "icon": "fa-solid fa-trash-can",
         "priority": 3
     },
     {

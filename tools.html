@@ -211,54 +211,75 @@
     <script>
         const container = document.getElementById('tools-container');
 
-        // 根据图标决定图标专属色，保持视觉精致度
-        function getIconColor(iconClass) {
-            if (iconClass.includes('bilibili')) return '#3498db';
-            if (iconClass.includes('pie') || iconClass.includes('chart')) return '#2ecc71';
-            if (iconClass.includes('clock') || iconClass.includes('rotate')) return '#9b59b6';
-            return '#e67e22'; // 默认橙黄色
+    function getIconColor(iconClass) {
+        if (iconClass.includes('bilibili')) return '#3498db';
+        if (iconClass.includes('pie') || iconClass.includes('chart')) return '#2ecc71';
+        if (iconClass.includes('clock') || iconClass.includes('rotate')) return '#9b59b6';
+        if (iconClass.includes('trash')) return '#e74c3c'; // 危险操作警示红
+        return '#e67e22'; 
+    }
+
+    // 核心二次确认与清理逻辑
+    function clearAllRecords(event) {
+        if (event) event.preventDefault();
+        
+        const confirmed = window.confirm("此操作会清除所有做题记录，且无法撤销");
+        if (!confirmed) {
+            return;
         }
 
-        async function loadTools() {
-            try {
-                const response = await fetch('tools_data.json');
-                if (!response.ok) throw new Error("无法读取配置文件");
-                
-                const data = await response.json();
-                
-                if (data.length === 0) {
-                    container.innerHTML = '<div class="empty-state">暂无收录的小工具</div>';
-                    return;
+        // 移除比赛与数学题的所有 LocalStorage 记录
+        localStorage.removeItem('xcpc_done_records');
+        localStorage.removeItem('math_done_records');
+
+        alert("所有做题记录已清空完毕。");
+    }
+
+    async function loadTools() {
+        try {
+            const response = await fetch('tools_data.json?_t=' + Date.now(), { cache: 'no-store' });
+            if (!response.ok) throw new Error("无法读取配置文件");
+            
+            const data = await response.json();
+            
+            if (data.length === 0) {
+                container.innerHTML = '<div class="empty-state">暂无收录的小工具</div>';
+                return;
+            }
+
+            const sortedData = [...data].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+            container.innerHTML = sortedData.map(tool => {
+                const isDisabled = tool.url === '#';
+                const isClearAction = tool.url === 'action:clear_records';
+                const badgeHTML = isDisabled ? '<div class="status-badge">施工中</div>' : '';
+                const disabledClass = isDisabled ? 'disabled' : '';
+                const iconColor = isDisabled ? '#95a5a6' : getIconColor(tool.icon);
+
+                let hrefHTML = `href="${tool.url}"`;
+                if (isDisabled) {
+                    hrefHTML = 'href="#" onclick="event.preventDefault()"';
+                } else if (isClearAction) {
+                    hrefHTML = 'href="#" onclick="clearAllRecords(event)"';
                 }
 
-                // 核心排序：按 priority 降序排（权重高的在前面）
-                const sortedData = [...data].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+                return `
+                    <a ${hrefHTML} class="tool-circle ${disabledClass}">
+                        ${badgeHTML}
+                        <i class="${tool.icon} tool-icon" style="color: ${iconColor};"></i>
+                        <div class="tool-name">${tool.name}</div>
+                        <div class="tool-desc">${tool.subtitle}</div>
+                    </a>
+                `;
+            }).join('');
 
-                container.innerHTML = sortedData.map(tool => {
-                    const isDisabled = tool.url === '#';
-                    const badgeHTML = isDisabled ? '<div class="status-badge">施工中</div>' : '';
-                    const disabledClass = isDisabled ? 'disabled' : '';
-                    const iconColor = isDisabled ? '#95a5a6' : getIconColor(tool.icon);
-                    const hrefHTML = isDisabled ? 'href="#" onclick="event.preventDefault()"' : `href="${tool.url}"`;
-
-                    return `
-                        <a ${hrefHTML} class="tool-circle ${disabledClass}">
-                            ${badgeHTML}
-                            <i class="${tool.icon} tool-icon" style="color: ${iconColor};"></i>
-                            <div class="tool-name">${tool.name}</div>
-                            <div class="tool-desc">${tool.subtitle}</div>
-                        </a>
-                    `;
-                }).join('');
-
-            } catch (error) {
-                console.error("加载工具列表失败:", error);
-                container.innerHTML = '<div class="empty-state" style="color: #e74c3c;">⚠️ 无法读取小工具配置数据，请确保本地服务器环境正常运行。</div>';
-            }
+        } catch (error) {
+            console.error("加载工具列表失败:", error);
+            container.innerHTML = '<div class="empty-state" style="color: #e74c3c;">⚠️ 无法读取小工具配置数据，请确保本地服务器环境正常运行。</div>';
         }
+    }
 
-        // 启动加载
-        loadTools();
+    loadTools();
     </script>
 </body>
 </html>
