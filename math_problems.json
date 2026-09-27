@@ -405,5 +405,16 @@
         "subcategory": "贪心",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2201_C",
+        "platform": "Codeforces",
+        "contest_name": "CF1082",
+        "contest_url": "https://codeforces.com/contest/2201",
+        "problem_id": "C",
+        "category": "计数问题",
+        "subcategory": "DP",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
