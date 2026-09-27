@@ -115,7 +115,7 @@
         "contest_name": "2025ICPC武汉",
         "contest_url": "https://codeforces.com/gym/106252",
         "problem_id": "A",
-        "category": "计数问题",
+        "category": "Ad-hoc",
         "subcategory": "二分答案",
         "difficulty": "Medium",
         "status": false
@@ -415,6 +415,17 @@
         "category": "计数问题",
         "subcategory": "DP",
         "difficulty": "Medium",
+        "status": false
+    },
+    {
+        "id": "Codeforces_2266_F",
+        "platform": "Codeforces",
+        "contest_name": "CF1122",
+        "contest_url": "https://codeforces.com/contest/2266",
+        "problem_id": "F",
+        "category": "Ad-hoc",
+        "subcategory": "二分答案",
+        "difficulty": "Easy",
         "status": false
     }
 ]
