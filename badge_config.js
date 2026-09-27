@@ -8,7 +8,7 @@ const BADGE_CONFIG = {
         "QOJ":        { bg: "#363738", text: "#ffffff" },
         "Luogu":      { bg: "#35bddc", text: "#ffffff" },
         "AtCoder":    { bg: "#222222", text: "#ffffff" },
-        "Nowcoder":   { bg: "#9b59b6", text: "#ffffff" },
+        "Nowcoder":   { bg: "#0f9f2e", text: "#ffffff" },
         "default":    { bg: "#7f8c8d", text: "#ffffff" }
     },
     difficulties: {

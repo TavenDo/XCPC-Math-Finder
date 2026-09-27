@@ -325,7 +325,7 @@
         <div class="grid-col">
             <div class="capsule-group">
                 <div class="stat-capsule">已有：<span id="total-tools">-</span> 项</div>
-                <div class="stat-capsule" id="latest-tool">最新：加载中...</div>
+                <div class="stat-capsule" id="latest-tool">最热：加载中...</div>
             </div>
             <a href="tools.html" class="nav-card card-right">
                 个人小工具收录
@@ -413,15 +413,15 @@
                     if (data.length > 0) {
                         // 2. 按 priority 降序排列，最高者即为最新/最重要的小工具
                         const sortedTools = [...data].sort((a, b) => (b.priority || 0) - (a.priority || 0));
-                        document.getElementById('latest-tool').innerText = `最新：${sortedTools[0].name}`;
+                        document.getElementById('latest-tool').innerText = `最热：${sortedTools[0].name}`;
                     } else {
-                        document.getElementById('latest-tool').innerText = "最新：暂无工具";
+                        document.getElementById('latest-tool').innerText = "最热：暂无工具";
                     }
                 }
             } catch (error) {
                 console.error("无法读取小工具配置数据:", error);
                 document.getElementById('total-tools').innerText = "0";
-                document.getElementById('latest-tool').innerText = "最新：获取失败";
+                document.getElementById('latest-tool').innerText = "最热：获取失败";
             }
         }
         // 初始化加载

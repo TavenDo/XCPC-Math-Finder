@@ -10,7 +10,7 @@ WORK_FILE_PATH = os.path.join(BASE_DIR, "Math_work.json")
 
 CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望", "Ad-hoc"]
 DIFFICULTIES = ["Template", "Easy", "Medium", "Hard"]
-PLATFORMS = ["Codeforces", "QOJ", "Luogu"]
+PLATFORMS = ["Codeforces", "QOJ", "Luogu","Nowcoder"]
 
 def load_data(filepath):
     if not os.path.exists(filepath):
