@@ -37,9 +37,10 @@ class CheckinApp:
         self.root.geometry("520x460")
         self.root.resizable(False, False)
 
-        # 加载现有题目供选择与校验
-        self.math_problems = load_json(MATH_PROBLEMS_FILE)
-        self.math_id_map = {item['id']: item for item in self.math_problems if 'id' in item}
+        # 题目缓存与哈希映射
+        self.math_problems = []
+        self.math_id_map = {}
+        self.load_math_data()
 
         frame = ttk.Frame(root, padding="20 20 20 20")
         frame.pack(fill=tk.BOTH, expand=True)
@@ -50,6 +51,18 @@ class CheckinApp:
         self.var_preview = tk.StringVar(value="等待选择或输入题目 ID...")
 
         self._build_ui(frame)
+
+    def load_math_data(self):
+        """读取题库并返回从后向前的 ID 列表"""
+        self.math_problems = load_json(MATH_PROBLEMS_FILE)
+        self.math_id_map = {item['id']: item for item in self.math_problems if 'id' in item}
+        # 核心改动：从后向前逆序提取题目 ID
+        return [item['id'] for item in reversed(self.math_problems) if 'id' in item]
+
+    def refresh_dropdown_values(self):
+        """展开下拉菜单前动态触发，保证最新加入的题目即时可用"""
+        reversed_ids = self.load_math_data()
+        self.cb_id['values'] = reversed_ids
 
     def _build_ui(self, parent):
         row = 0
@@ -65,9 +78,15 @@ class CheckinApp:
         # 题目 ID
         ttk.Label(parent, text="题目 ID:").grid(row=row, column=0, sticky=tk.W, pady=10)
         
-        # 支持下拉快捷选择已存在的题目 ID，也可直接键盘输入
-        id_values = list(self.math_id_map.keys())
-        self.cb_id = ttk.Combobox(parent, textvariable=self.var_problem_id, values=id_values, width=35)
+        # 初始加载逆序题目列表，绑定 postcommand
+        initial_ids = [item['id'] for item in reversed(self.math_problems) if 'id' in item]
+        self.cb_id = ttk.Combobox(
+            parent, 
+            textvariable=self.var_problem_id, 
+            values=initial_ids, 
+            width=35,
+            postcommand=self.refresh_dropdown_values
+        )
         self.cb_id.grid(row=row, column=1, sticky=tk.W, pady=10)
         self.cb_id.bind("<<ComboboxSelected>>", self.on_id_changed)
         self.cb_id.bind("<KeyRelease>", self.on_id_changed)
@@ -106,7 +125,6 @@ class CheckinApp:
             messagebox.showwarning("校验失败", "打卡日期与题目 ID 均为必填项！")
             return
 
-        # 校验日期合法性
         try:
             datetime.datetime.strptime(date_str, "%Y-%m-%d")
         except ValueError:
@@ -115,7 +133,6 @@ class CheckinApp:
 
         checkin_data = load_json(CHECKIN_FILE)
 
-        # 查重逻辑：防止同一天重复打卡同一题
         if any(item.get('date') == date_str and item.get('id') == problem_id for item in checkin_data):
             messagebox.showerror("重复打卡", f"在 {date_str} 已经为题目 {problem_id} 打过卡了！")
             return
@@ -125,7 +142,6 @@ class CheckinApp:
             "id": problem_id
         }
 
-        # 自动插入并按日期降序保存
         checkin_data.append(new_record)
         checkin_data.sort(key=lambda x: x.get('date', ''), reverse=True)
 
