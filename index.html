@@ -158,6 +158,32 @@
         .card-center { border-bottom: 5px solid #e74c3c; }
         .card-right { border-bottom: 5px solid #2ecc71; } 
         .sub-text { font-size: 0.5em; color: #555; margin-top: 10px; font-weight: normal; }
+        .record-capsule-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .record-btn {
+            background-color: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 230, 241, 0.8);
+            color: #2c3e50;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .record-btn:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
         @media (max-width: 768px) {
             /* 1. 顶端导航栏：压缩边距，缩小字号 */
             header {
@@ -259,6 +285,17 @@
         <h2>算法竞赛数学训练助手</h2>
         <div class="update-capsule" title="GitHub 仓库数据文件最后提交时间">
             <i class="fa-regular fa-clock"></i> 上次更新：<span id="last-update-time">获取中...</span>
+        </div>
+        
+        <!-- 新增：记录管理操作组 -->
+        <div class="record-capsule-group">
+            <button class="record-btn" onclick="exportRecords()" title="导出刷题进度备份">
+                <i class="fa-solid fa-download"></i> 导出进度
+            </button>
+            <button class="record-btn" onclick="triggerImport()" title="导入历史进度覆盖/合并">
+                <i class="fa-solid fa-upload"></i> 导入进度
+            </button>
+            <input type="file" id="import-file-input" accept=".json" style="display: none;" onchange="handleFileImport(event)">
         </div>
     </div>
 
@@ -392,6 +429,79 @@
         fetchContestStats();
         fetchMathStats();
         fetchToolsStats();
+        // 1. 导出做题与比赛记录为 JSON 文件
+        function exportRecords() {
+            const xcpcRecords = JSON.parse(localStorage.getItem('xcpc_done_records')) || {};
+            const mathRecords = JSON.parse(localStorage.getItem('math_done_records')) || {};
+
+            const backupData = {
+                version: "1.0",
+                export_time: new Date().toISOString(),
+                xcpc_done_records: xcpcRecords,
+                math_done_records: mathRecords
+            };
+
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            const dateStr = new Date().toISOString().slice(0, 10);
+            
+            a.href = url;
+            a.download = `xcpc_records_${dateStr}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 2. 触发文件选择框
+        function triggerImport() {
+            document.getElementById('import-file-input').click();
+        }
+
+        // 3. 处理导入数据（采用增量合并，防止误删多端未同步记录）
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    // 基础结构校验
+                    if (!data.xcpc_done_records && !data.math_done_records) {
+                        alert("导入失败：文件格式不匹配，未识别到做题记录。");
+                        return;
+                    }
+
+                    // 读取本地已有数据，并与导入数据进行并集（Union）合并
+                    const localXcpc = JSON.parse(localStorage.getItem('xcpc_done_records')) || {};
+                    const localMath = JSON.parse(localStorage.getItem('math_done_records')) || {};
+
+                    const mergedXcpc = { ...localXcpc, ...(data.xcpc_done_records || {}) };
+                    const mergedMath = { ...localMath, ...(data.math_done_records || {}) };
+
+                    // 写回本地缓存
+                    localStorage.setItem('xcpc_done_records', JSON.stringify(mergedXcpc));
+                    localStorage.setItem('math_done_records', JSON.stringify(mergedMath));
+
+                    alert("🎉 记录同步成功！页面数据将自动更新。");
+
+                    // 立即刷新主页展示的卡片统计数字
+                    fetchContestStats();
+                    fetchMathStats();
+
+                } catch (err) {
+                    console.error("解析文件失败:", err);
+                    alert("读取备份文件失败，请确保选择的是由本站导出的 JSON 文件。");
+                } finally {
+                    // 重置 input，允许连续导入同名文件
+                    event.target.value = '';
+                }
+            };
+            reader.readAsText(file);
+        }
     </script>
 </body>
 </html>
