@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_PATH = os.path.join(BASE_DIR, "math_problems.json")
 
 # 更新：只保留四个大方向，去掉博弈论
-CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望"]
+CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望","Ad-hoc"]
 DIFFICULTIES = ["Template","Easy", "Medium", "Hard"]
 PLATFORMS = ["Codeforces", "QOJ","Luogu"]
 
