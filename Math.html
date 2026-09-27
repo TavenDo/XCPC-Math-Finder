@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数学题单 - XCPC-Math-Finder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -190,8 +191,25 @@
 
         .badge { padding: 4px 10px; border-radius: 6px; font-size: 0.85em; font-weight: bold; color: white; display: inline-block; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
+        .action-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
         a.link-btn { color: #2980b9; text-decoration: none; font-weight: bold; }
         a.link-btn:hover { text-decoration: underline; color: #1f618d; }
+
+        a.link-thought {
+            color: #d35400;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        a.link-thought:hover {
+            color: #e67e22;
+        }
         
         input[type="checkbox"] { transform: scale(1.4); cursor: pointer; }
 
@@ -200,7 +218,83 @@
 
         .empty-state { text-align: center; padding: 30px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-weight: bold; font-size: 1.1em; background: rgba(0,0,0,0.2); border-radius: 10px; }
 
-        /* 移动端自适应 */
+        /* 思维路径弹窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 25px 30px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            position: relative;
+            animation: modalPop 0.25s ease;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.4em;
+            color: #95a5a6;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: #e74c3c; }
+
+        .thought-header {
+            margin: 0 0 15px 0;
+            font-size: 1.25em;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thought-content {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: left;
+            border-left: 4px solid #f39c12;
+        }
+
         @media (max-width: 768px) {
             header { padding: 10px 15px; }
             .header-left h1 { font-size: 1.2em; }
@@ -214,6 +308,7 @@
             th, td { padding: 12px 10px; }
             .floating-nav { bottom: 20px; right: 15px; gap: 10px; }
             .btn-jump { padding: 8px 16px; font-size: 0.85em; }
+            .modal-card { padding: 20px; }
         }
     </style>
 </head>
@@ -236,31 +331,37 @@
         </div>
     </div>
 
-    <div class="floating-nav" id="nav-container">
-        </div>
+    <div class="floating-nav" id="nav-container"></div>
+    <div class="container" id="main-container"></div>
 
-    <div class="container" id="main-container">
+    <!-- 思维路径弹窗 -->
+    <div class="modal-overlay" id="thought-modal" onclick="onOverlayClick(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeThoughtModal()">&times;</button>
+            <div class="thought-header">
+                <i class="fa-regular fa-lightbulb" style="color: #f39c12;"></i>
+                <span id="thought-modal-title">思维路径</span>
+            </div>
+            <pre class="thought-content" id="thought-modal-body"></pre>
         </div>
+    </div>
 
     <script>
-        const CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望","Ad-hoc"];
+        const CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望", "Ad-hoc"];
         
         let globalMathData = [];
+        let globalMapWork = {}; // id -> thinking
         let doneMap = JSON.parse(localStorage.getItem('math_done_records')) || {};
-        
-        // 新增状态：默认隐藏细分小类
         let hideSubtags = true; 
 
         const navContainer = document.getElementById('nav-container');
         const mainContainer = document.getElementById('main-container');
 
-        // 初始化导航锚点与控制开关
         function initNav() {
             let html = CATEGORIES.map((cat, index) => 
                 `<a href="#cat-${index}" class="btn-jump"><i class="fa-solid fa-tag"></i> ${cat}</a>`
             ).join('');
             
-            // 挂载显示/隐藏切换按钮 (初始状态根据hideSubtags设定)
             const icon = hideSubtags ? "fa-eye-slash" : "fa-eye";
             const text = hideSubtags ? "显示细分Tag" : "隐藏细分Tag";
             html += `<a href="#" class="btn-jump" style="background-color: rgba(149, 165, 166, 0.9);" onclick="toggleSubtags(event)" id="btn-toggle-sub"><i class="fa-solid ${icon}"></i> ${text}</a>`;
@@ -268,7 +369,6 @@
             navContainer.innerHTML = html;
         }
 
-        // 切换函数
         function toggleSubtags(e) {
             e.preventDefault();
             hideSubtags = !hideSubtags;
@@ -279,7 +379,6 @@
             } else {
                 btn.innerHTML = '<i class="fa-solid fa-eye"></i> 隐藏细分Tag';
             }
-            // 保持搜索词的情况下重新渲染
             handleSearch();
         }
 
@@ -294,11 +393,36 @@
             renderMathView(keyword);
         }
 
+        function openThoughtModal(problemId) {
+            const thought = globalMapWork[problemId];
+            if (!thought) return;
+
+            const problem = globalMathData.find(p => p.id === problemId);
+            const title = problem ? `${problem.contest_name} - Problem ${problem.problem_id}` : problemId;
+
+            document.getElementById('thought-modal-title').innerText = `${title} 的思维路径`;
+            document.getElementById('thought-modal-body').innerText = thought;
+            document.getElementById('thought-modal').classList.add('active');
+        }
+
+        function closeThoughtModal() {
+            document.getElementById('thought-modal').classList.remove('active');
+        }
+
+        function onOverlayClick(e) {
+            if (e.target.id === 'thought-modal') {
+                closeThoughtModal();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeThoughtModal();
+        });
+
         function renderMathView(filterKeyword = '') {
             mainContainer.innerHTML = '';
             const keyword = filterKeyword.toLowerCase();
 
-            // 1. 过滤数据
             let filteredData = globalMathData;
             if (keyword) {
                 filteredData = globalMathData.filter(item => {
@@ -309,7 +433,6 @@
                 });
             }
 
-            // 2. 按四大类循环渲染
             CATEGORIES.forEach((cat, index) => {
                 const section = document.createElement('div');
                 section.className = 'category-section';
@@ -328,7 +451,6 @@
                     return;
                 }
 
-                // 3. 构建聚合逻辑：如果 hideSubtags 为真，则不按小类拆分
                 const renderGroups = {};
                 if (hideSubtags) {
                     renderGroups['ALL'] = catData;
@@ -340,7 +462,6 @@
                     });
                 }
 
-                // 4. 构建表格
                 const table = document.createElement('table');
                 let tbodyHTML = `
                     <thead>
@@ -349,20 +470,17 @@
                             <th width="100px">难度</th>
                             <th width="100px">平台</th>
                             <th>比赛名称 & 题号</th>
-                            <th width="120px">操作</th>
+                            <th width="190px">操作</th>
                         </tr>
                     </thead>
                     <tbody>
                 `;
 
-                // 遍历渲染组
                 for (const [subcat, problems] of Object.entries(renderGroups)) {
-                    // 如果处于显示细分状态，渲染组头
                     if (!hideSubtags) {
                         tbodyHTML += `<tr><td colspan="5" class="subcat-header">🏷️ ${subcat}</td></tr>`;
                     }
 
-                    // 排序核心逻辑依然生效：未做在前(0)，已做沉底(1)。同状态按照 Easy->Medium->Hard 排序
                     problems.sort((a, b) => {
                         const doneA = doneMap[a.id] ? 1 : 0;
                         const doneB = doneMap[b.id] ? 1 : 0;
@@ -373,11 +491,15 @@
                         return weightA - weightB; 
                     });
 
-                    // 生成题目行
                     problems.forEach(p => {
                         const isDone = doneMap[p.id] || false;
                         const rowClass = isDone ? 'done-row' : '';
-                        
+                        const hasThought = Boolean(globalMapWork[p.id]);
+
+                        const thoughtBtnHTML = hasThought 
+                            ? `<a href="javascript:void(0)" onclick="openThoughtModal('${p.id}')" class="link-btn link-thought"><i class="fa-regular fa-lightbulb"></i> 思维路径</a>` 
+                            : '';
+
                         tbodyHTML += `
                             <tr class="${rowClass}">
                                 <td>
@@ -387,7 +509,12 @@
                                 <td>${getDiffBadge(p.difficulty)}</td>
                                 <td>${getPlatformBadge(p.platform)}</td>
                                 <td><strong>${p.contest_name}</strong> - Problem ${p.problem_id}</td>
-                                <td><a href="${p.contest_url}" target="_blank" class="link-btn">去切题 🚀</a></td>
+                                <td>
+                                    <div class="action-cell">
+                                        ${thoughtBtnHTML}
+                                        <a href="${p.contest_url}" target="_blank" class="link-btn">去切题 🚀</a>
+                                    </div>
+                                </td>
                             </tr>
                         `;
                     });
@@ -401,16 +528,34 @@
         }
 
         initNav();
-        fetch(`math_problems.json?_t=${Date.now()}`, { cache: 'no-store' })
-            .then(res => res.json())
-            .then(data => {
-                globalMathData = data;
-                renderMathView();
-            })
-            .catch(err => {
-                console.error("加载数学题库失败", err);
-                mainContainer.innerHTML = `<div class="empty-state" style="color:#e74c3c; background:rgba(255,255,255,0.8);">⚠️ 无法读取题库数据。请确保已通过 Python 脚本录入了题目，并在本地 Server 环境下运行。</div>`;
-            });
+
+        const cacheBuster = Date.now();
+        Promise.all([
+            fetch(`math_problems.json?_t=${cacheBuster}`, { cache: 'no-store' }).then(res => {
+                if (!res.ok) throw new Error("math_problems.json 加载失败");
+                return res.json();
+            }),
+            fetch(`Math_work.json?_t=${cacheBuster}`, { cache: 'no-store' }).then(res => {
+                if (!res.ok) return [];
+                return res.json();
+            }).catch(() => [])
+        ])
+        .then(([problemsData, workData]) => {
+            globalMathData = Array.isArray(problemsData) ? problemsData : [];
+            globalMapWork = {};
+            if (Array.isArray(workData)) {
+                workData.forEach(item => {
+                    if (item && item.id && item.thinking) {
+                        globalMapWork[String(item.id).trim()] = item.thinking;
+                    }
+                });
+            }
+            renderMathView();
+        })
+        .catch(err => {
+            console.error("加载数据失败", err);
+            mainContainer.innerHTML = `<div class="empty-state" style="color:#e74c3c; background:rgba(255,255,255,0.8);">⚠️ 无法读取题库数据。请检查本地 Server 环境配置。</div>`;
+        });
     </script>
 </body>
 </html>
