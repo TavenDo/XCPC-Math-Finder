@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_PATH = os.path.join(BASE_DIR, "math_problems.json")
 WORK_FILE_PATH = os.path.join(BASE_DIR, "Math_work.json")
 
-CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望", "Ad-hoc"]
+CATEGORIES = ["计数问题", "纯数论", "线性代数", "概率与期望", "Ad-hoc","每日一题"]
 DIFFICULTIES = ["Template", "Easy", "Medium", "Hard"]
 PLATFORMS = ["Codeforces", "QOJ", "Luogu","Nowcoder"]
 

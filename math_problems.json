@@ -438,5 +438,16 @@
         "subcategory": "DP",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Luogu_P11005_P11005",
+        "platform": "Luogu",
+        "contest_name": "P11005",
+        "contest_url": "https://www.luogu.com.cn/problem/P11005",
+        "problem_id": "P11005",
+        "category": "每日一题",
+        "subcategory": "DSU",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
