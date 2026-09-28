@@ -427,5 +427,16 @@
         "subcategory": "二分答案",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "Codeforces_2196_C2",
+        "platform": "Codeforces",
+        "contest_name": "CF1079",
+        "contest_url": "https://codeforces.com/contest/2196",
+        "problem_id": "C2",
+        "category": "Ad-hoc",
+        "subcategory": "DP",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
