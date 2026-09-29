@@ -449,5 +449,16 @@
         "subcategory": "DSU",
         "difficulty": "Easy",
         "status": false
+    },
+    {
+        "id": "QOJ_2567_K",
+        "platform": "QOJ",
+        "contest_name": "25IC成都",
+        "contest_url": "https://qoj.ac/contest/2567",
+        "problem_id": "K",
+        "category": "计数问题",
+        "subcategory": "拆贡献",
+        "difficulty": "Medium",
+        "status": false
     }
 ]
