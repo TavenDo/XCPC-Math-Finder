@@ -460,5 +460,27 @@
         "subcategory": "拆贡献",
         "difficulty": "Medium",
         "status": false
+    },
+    {
+        "id": "Luogu_P4549_P4549",
+        "platform": "Luogu",
+        "contest_name": "P4549",
+        "contest_url": "https://www.luogu.com.cn/problem/P4549",
+        "problem_id": "P4549",
+        "category": "纯数论",
+        "subcategory": "裴蜀定理",
+        "difficulty": "Template",
+        "status": false
+    },
+    {
+        "id": "Luogu_P16795_P16795",
+        "platform": "Luogu",
+        "contest_name": "P16795",
+        "contest_url": "https://www.luogu.com.cn/problem/P16795",
+        "problem_id": "P16795",
+        "category": "每日一题",
+        "subcategory": "贪心",
+        "difficulty": "Easy",
+        "status": false
     }
 ]
